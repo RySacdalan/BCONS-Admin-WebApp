@@ -1,11 +1,12 @@
+import Dashboard from "./components/dashboard";
+import Auth from "./components/auth";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>BCONS ADMIN</h1>
-    </div>
-  );
+  const [user] = useState(false);
+
+  return <div className="App">{user ? <Dashboard /> : <Auth />}</div>;
 }
 
 export default App;
