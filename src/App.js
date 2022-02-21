@@ -2,11 +2,16 @@ import Dashboard from "./components/dashboard";
 import Auth from "./components/auth";
 import "./App.css";
 import { useState } from "react";
+import { useUserContext } from "./context/userContext";
 
 function App() {
-  const [user] = useState(false);
-
-  return <div className="App">{user ? <Dashboard /> : <Auth />}</div>;
+  const { error, loading, user } = useUserContext();
+  return (
+    <div className="App">
+      {error && <p className="error">{error}</p>}
+      {loading ? <h2>Loading...</h2> : <>{user ? <Dashboard /> : <Auth />}</>}
+    </div>
+  );
 }
 
 export default App;
