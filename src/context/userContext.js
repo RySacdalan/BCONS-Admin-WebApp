@@ -4,7 +4,6 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  updateProfile,
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
@@ -33,14 +32,9 @@ export const UserContextProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  const registerUser = (email, password, name) => {
+  const registerUser = (email, password) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
-      .then(() =>
-        updateProfile(auth.currentUser, {
-          displayName: name,
-        })
-      )
       .then((res) => console.log(res))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
