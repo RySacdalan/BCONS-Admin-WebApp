@@ -1,6 +1,6 @@
 import React from "react";
 import Topnavbar from "./topnavbar";
-import "../styles/dashboard.css";
+import "../styles/dashboard.scss";
 
 const Dashboard = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { useUserContext } from "../context/userContext";
-import "../styles/topnavbar.css";
+import "../styles/topnavbar.scss";
 import logo from "../images/BCONS-plain.png";
 
 const Topnavbar = () => {
@@ -10,7 +10,8 @@ const Topnavbar = () => {
     <div className="topnavbar">
       <div className="topwrapper">
         <div className="topleft">
-          <img className="logo" src={logo} alt="BCONS Logo" />| Admin
+          <img className="logo" src={logo} alt="BCONS Logo" />
+          <h3>| Admin</h3>
         </div>
         <div className="topright">
           <button onClick={logoutUser}>Logout</button>

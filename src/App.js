@@ -1,7 +1,7 @@
 import Dashboard from "./components/dashboard";
 import Auth from "./components/auth";
-import "./App.css";
-import "./styles/signin.css";
+import "./App.scss";
+import "./styles/signin.scss";
 import { useUserContext } from "./context/userContext";
 
 function App() {
