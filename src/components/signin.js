@@ -25,7 +25,7 @@ const Signin = () => {
   return (
     <div className="form">
       {error && <p className="error">{error}</p>}
-      <h2>AdminLogin</h2>
+      <h2>Admin login</h2>
       <form onSubmit={onSubmit}>
         <input placeholder="Email" type="email" ref={emailRef} />
         <input placeholder="Password" type="password" ref={psdRef} />
