@@ -1,7 +1,7 @@
 import Dashboard from "./components/dashboard";
 import Auth from "./components/auth";
 import "./App.css";
-import { useState } from "react";
+import "./styles/signin.css";
 import { useUserContext } from "./context/userContext";
 
 function App() {
