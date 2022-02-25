@@ -5,7 +5,7 @@ const Signin = () => {
   const emailRef = useRef();
   const psdRef = useRef();
 
-  const { signInUser, forgotPassword } = useUserContext();
+  const { error, signInUser, forgotPassword } = useUserContext();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +24,8 @@ const Signin = () => {
 
   return (
     <div className="form">
-      <h2>Login</h2>
+      {error && <p className="error">{error}</p>}
+      <h2>AdminLogin</h2>
       <form onSubmit={onSubmit}>
         <input placeholder="Email" type="email" ref={emailRef} />
         <input placeholder="Password" type="password" ref={psdRef} />

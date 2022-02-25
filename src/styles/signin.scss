@@ -15,14 +15,14 @@
 
 .form {
   width: 100%;
+  h2 {
+    text-align: center;
+  }
   form {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    h2 {
-      text-align: center;
-    }
     input {
       padding: 12px;
       margin: 12px;
@@ -59,4 +59,5 @@
   font-weight: bold;
   max-width: 400px;
   margin-bottom: 18px;
+  text-align: center;
 }
