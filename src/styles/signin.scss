@@ -1,9 +1,11 @@
+@import "./variables";
+
 .container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 1px 6px #ccc;
+  box-shadow: 0 1px 6px $gray1;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -27,19 +29,19 @@
       padding: 12px;
       margin: 12px;
       font-size: 14px;
-      border: 1px solid #ccc;
-      box-shadow: 0 1px 4px #ccc;
+      border: 1px solid $gray1;
+      box-shadow: 0 1px 4px $gray1;
       border-radius: 6px;
       font-size: 18px;
       width: 100%;
     }
     button {
-      background-color: teal;
+      background-color: $bg-button1;
       border: none;
-      color: white;
+      color: $white1;
       padding: 12px;
       margin: 12px 0;
-      box-shadow: 0 1px 6px #ccc;
+      box-shadow: 0 1px 6px $gray1;
       width: 100%;
       border-radius: 6px;
       font-size: 18px;
@@ -52,8 +54,8 @@
 }
 
 .error {
-  background-color: tomato;
-  color: white;
+  background-color: $error1;
+  color: $white1;
   border-radius: 6px;
   padding: 6px 12px;
   font-weight: bold;

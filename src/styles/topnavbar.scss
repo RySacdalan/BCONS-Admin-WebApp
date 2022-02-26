@@ -1,9 +1,11 @@
+@import "./variables";
+
 .topnavbar {
-  color: #a0a5b9;
+  color: $font-color1;
   width: 100%;
   height: 70px;
-  background-color: #fff;
-  box-shadow: 0 0.35px 1.35px #ccc;
+  background-color: $white1;
+  box-shadow: 0 0.35px 1.35px $gray1;
   .topwrapper {
     display: flex;
     align-items: center;
@@ -21,7 +23,7 @@
     }
     .topright {
       display: flex;
-      background-color: #f4f5f9;
+      background-color: $white2;
       padding: 10px;
       border-radius: 50px;
       .topright_content {
@@ -33,12 +35,12 @@
       }
     }
     button {
-      background-color: teal;
+      background-color: $bg-button1;
       border: none;
-      color: white;
+      color: $white1;
       padding: 8px;
       height: 35px;
-      box-shadow: 0 1px 6px #ccc;
+      box-shadow: 0 1px 6px $gray1;
       border-radius: 6px;
       font-size: 18px;
       cursor: pointer;
