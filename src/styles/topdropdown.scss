@@ -1,0 +1,36 @@
+.dropdown {
+  position: relative;
+  user-select: none;
+  .dropdown-btn {
+    background-color: teal;
+    border: none;
+    color: white;
+    padding: 8px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    box-shadow: 0 1px 5px #ccc;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .dropdown-content {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    border-radius: 5px;
+    width: 250px;
+    padding: 10px;
+    background-color: teal;
+    color: #fff;
+    box-shadow: 0 1px 5px #ccc;
+    cursor: pointer;
+  }
+  .dropdown-item {
+    padding: 10px;
+    transition: all 0.2s;
+    &:hover {
+      background-color: rgb(1, 158, 158);
+    }
+  }
+}
