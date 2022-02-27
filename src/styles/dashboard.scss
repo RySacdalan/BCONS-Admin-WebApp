@@ -4,3 +4,10 @@
   height: 100vh;
   background-color: $white2;
 }
+.sidenav-container {
+  display: flex;
+}
+.sample {
+  flex: 4;
+  background-color: burlywood;
+}
