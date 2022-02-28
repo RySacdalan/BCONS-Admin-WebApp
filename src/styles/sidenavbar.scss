@@ -1,3 +1,8 @@
-.sidenav {
+.sidenavbar {
   flex: 1;
+  height: calc(100vh - 70px);
+  background-color: burlywood;
+}
+.sidenavbar-menu {
+  padding: 40px;
 }
