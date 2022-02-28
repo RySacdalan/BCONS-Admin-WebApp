@@ -10,28 +10,28 @@ const Sidenavbar = () => {
           <ul className="sidenavbar-list">
             <li className="sidenavbar-listItem">
               <ion-icon name="home"></ion-icon>
-              Home
+              <p>Home</p>
             </li>
             <li className="sidenavbar-listItem">
               <ion-icon name="people"></ion-icon>
-              Users
+              <p>Users</p>
             </li>
             <li className="sidenavbar-listItem">
               <ion-icon name="alert-circle"></ion-icon>
-              Reports
+              <p>Reports</p>
             </li>
             <li className="sidenavbar-listItem">
               <ion-icon name="time-outline"></ion-icon>
-              History
+              <p>History</p>
             </li>
             <div className="lower-listItem">
               <li className="sidenavbar-listItem">
                 <ion-icon name="settings-outline"></ion-icon>
-                Settings
+                <p>Settings</p>
               </li>
               <li className="sidenavbar-listItem">
                 <ion-icon name="information-circle"></ion-icon>
-                About BCONS
+                <p>BCONS</p>
               </li>
             </div>
           </ul>
