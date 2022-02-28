@@ -16,7 +16,7 @@ const Topnavbar = () => {
         </div>
         <div className="topright">
           <div className="topright_content">
-            <h3>{user.email}</h3>
+            <p>{user.email}</p>
             <Topdropdown />
           </div>
         </div>

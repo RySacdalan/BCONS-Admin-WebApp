@@ -5,9 +5,11 @@
   height: calc(100vh - 70px);
   background-color: $white1;
   position: sticky;
+  box-shadow: 0 0.35px 1.35px $gray1;
   .sidenavbar-menu {
     padding: 35px;
-    h3 {
+    .sidenavbar-title {
+      font-size: 1.5rem;
       color: #000;
     }
     .sidenavbar-list {
@@ -28,7 +30,8 @@
         cursor: pointer;
         &:active,
         &:hover {
-          color: red;
+          color: $white2;
+          background-color: $hover1;
         }
       }
       .lower-listItem {

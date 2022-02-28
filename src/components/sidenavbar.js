@@ -21,12 +21,12 @@ const Sidenavbar = () => {
               <p>Reports</p>
             </li>
             <li className="sidenavbar-listItem">
-              <ion-icon name="time-outline"></ion-icon>
+              <ion-icon name="time"></ion-icon>
               <p>History</p>
             </li>
             <div className="lower-listItem">
               <li className="sidenavbar-listItem">
-                <ion-icon name="settings-outline"></ion-icon>
+                <ion-icon name="settings"></ion-icon>
                 <p>Settings</p>
               </li>
               <li className="sidenavbar-listItem">
