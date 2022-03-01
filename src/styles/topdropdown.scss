@@ -15,6 +15,10 @@
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    &:hover,
+    &:active {
+      background-color: $red1;
+    }
   }
   .dropdown-content {
     position: absolute;
@@ -23,7 +27,7 @@
     border-radius: 5px;
     width: 220px;
     padding: 10px;
-    background-color: $bg-button1;
+    background-color: $red1;
     color: $white1;
     box-shadow: 0 1px 5px $gray1;
     cursor: pointer;
@@ -32,7 +36,7 @@
     padding: 10px;
     transition: all 0.2s;
     &:hover {
-      background-color: $hover1;
+      background-color: $red2;
     }
   }
 }

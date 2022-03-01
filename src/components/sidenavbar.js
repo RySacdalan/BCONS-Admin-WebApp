@@ -8,7 +8,7 @@ const Sidenavbar = () => {
         <div className="sidenavbar-menu">
           <h3 className="sidenavbar-title">Dashboard</h3>
           <ul className="sidenavbar-list">
-            <li className="sidenavbar-listItem">
+            <li className="sidenavbar-listItem active">
               <ion-icon name="home"></ion-icon>
               <p>Home</p>
             </li>

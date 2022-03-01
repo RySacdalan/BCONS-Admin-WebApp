@@ -9,8 +9,8 @@
   .sidenavbar-menu {
     padding: 35px;
     .sidenavbar-title {
-      font-size: 1.5rem;
-      color: #000;
+      font-size: 1.1rem;
+      color: $font-color2;
     }
     .sidenavbar-list {
       list-style: none;
@@ -28,11 +28,14 @@
         padding: 5px;
         font-size: 18px;
         cursor: pointer;
-        &:active,
         &:hover {
-          color: $white2;
-          background-color: $hover1;
+          color: $red1;
+          font-weight: bold;
         }
+      }
+      .sidenavbar-listItem.active {
+        color: $red1;
+        font-weight: bold;
       }
       .lower-listItem {
         transform: translateY(200px);
