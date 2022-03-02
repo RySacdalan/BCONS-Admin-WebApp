@@ -1,7 +1,8 @@
 import React from "react";
-import Topnavbar from "./topnavbar";
 import "../styles/dashboard.scss";
+import Topnavbar from "./topnavbar";
 import Sidenavbar from "./sidenavbar";
+import Home from "../pages/home/home";
 
 const Dashboard = () => {
   return (
@@ -10,7 +11,7 @@ const Dashboard = () => {
         <Topnavbar />
         <div className="sidenav-container">
           <Sidenavbar />
-          <div className="sample">Web app widgets</div>
+          <Home />
         </div>
       </div>
     </div>

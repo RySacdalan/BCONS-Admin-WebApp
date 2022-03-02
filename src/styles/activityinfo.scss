@@ -1,0 +1,37 @@
+@import "./variables";
+
+.activity {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.activity-item {
+  padding: 25px;
+  margin: 0 25px;
+  width: 25%;
+  border-radius: 10px !important;
+  color: $white1;
+  .activity-title {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .reports {
+    text-align: center;
+    font-size: 1.35rem;
+  }
+  ion-icon {
+    font-size: 22px;
+    margin: 0 5px;
+  }
+}
+.activity-item.total-report {
+  background-color: $red1;
+}
+.activity-item.unsolve-report {
+  background-color: $red2;
+}
+.activity-item.total-users {
+  background-color: #e09f3e;
+}

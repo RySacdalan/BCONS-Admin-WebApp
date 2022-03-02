@@ -4,7 +4,7 @@
   position: relative;
   user-select: none;
   .dropdown-btn {
-    background-color: $bg-button1;
+    background-color: $font-color2;
     border: none;
     color: $white1;
     padding: 8px;
@@ -17,7 +17,7 @@
     cursor: pointer;
     &:hover,
     &:active {
-      background-color: $red1;
+      background-color: #77849e;
     }
   }
   .dropdown-content {
@@ -27,7 +27,7 @@
     border-radius: 5px;
     width: 220px;
     padding: 10px;
-    background-color: $red1;
+    background-color: $font-color2;
     color: $white1;
     box-shadow: 0 1px 5px $gray1;
     cursor: pointer;
@@ -36,7 +36,7 @@
     padding: 10px;
     transition: all 0.2s;
     &:hover {
-      background-color: $red2;
+      background-color: #77849e;
     }
   }
 }
