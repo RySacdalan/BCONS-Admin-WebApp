@@ -30,12 +30,10 @@
         cursor: pointer;
         &:hover {
           color: $red1;
-          font-weight: bold;
         }
       }
       .sidenavbar-listItem.active {
         color: $red1;
-        font-weight: bold;
       }
       .lower-listItem {
         transform: translateY(200px);
