@@ -3,6 +3,7 @@
 .dropdown {
   position: relative;
   user-select: none;
+  z-index: 100;
   .dropdown-btn {
     background-color: $white1;
     border: none;
