@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { collection, getFirestore, getDocs } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,5 +14,21 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+//initialize service
+const db = getFirestore();
+
+//collection reference
+const colRef = collection(db, "Users");
+
+//get data collections
+getDocs(colRef).then((snapshot) => {
+  let users = [];
+  snapshot.docs.forEach((doc) => {
+    users.push({ ...doc.data(), id: doc.id });
+  });
+  console.log(users);
+});
+
 export const auth = getAuth(app);
 export default app;

@@ -1,3 +1,4 @@
+import React from "react";
 import Dashboard from "./components/dashboard";
 import Auth from "./components/auth";
 import "./App.scss";
