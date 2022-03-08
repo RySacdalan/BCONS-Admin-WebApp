@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./users.scss";
 import { collection, getFirestore, getDocs } from "firebase/firestore";
+import Userdatatable from "../../components/userdatatable";
 
 const Users = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -28,14 +29,8 @@ const Users = () => {
   return (
     <div className="users">
       <h3>List of All users</h3>
-      <div>
-        {allUsers.map((user) => {
-          return (
-            <div>
-              <p>{user.email}</p>
-            </div>
-          );
-        })}
+      <div className="users-container">
+        <Userdatatable data={allUsers} />
       </div>
     </div>
   );
