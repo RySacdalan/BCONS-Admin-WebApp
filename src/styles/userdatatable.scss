@@ -9,7 +9,7 @@
   -moz-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.47);
   .table-container {
     background-color: $white1;
-    max-height: 480px;
+    max-height: 70vh;
     overflow-x: scroll;
   }
   table {
@@ -18,7 +18,7 @@
   th {
     position: sticky;
     top: 0px;
-    background-color: teal;
+    background-color: $red2;
     padding: 8px;
     color: $white1;
     font-weight: 500;
@@ -38,5 +38,6 @@
     height: 60px;
     width: 60px;
     border-radius: 50%;
+    padding: 2px;
   }
 }

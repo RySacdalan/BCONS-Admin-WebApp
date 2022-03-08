@@ -5,7 +5,7 @@ import "./home.scss";
 const Home = () => {
   return (
     <div className="home">
-      <h2>Activity</h2>
+      <h3>Activity</h3>
       <Activityinfo />
     </div>
   );
