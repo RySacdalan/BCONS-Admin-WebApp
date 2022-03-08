@@ -13,6 +13,9 @@
       color: $font-color2;
     }
     .sidenavbar-list {
+      a {
+        text-decoration: none;
+      }
       list-style: none;
       ion-icon {
         font-size: 22px;
