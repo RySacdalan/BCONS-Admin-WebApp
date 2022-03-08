@@ -28,10 +28,8 @@ const Users = () => {
 
   return (
     <div className="users">
-      <h3>List of All users</h3>
-      <div className="users-container">
-        <Userdatatable data={allUsers} />
-      </div>
+      <h3>List of users</h3>
+      <Userdatatable data={allUsers} />
     </div>
   );
 };
