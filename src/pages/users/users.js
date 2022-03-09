@@ -5,6 +5,7 @@ import Userdatatable from "../../components/userdatatable";
 
 const Users = () => {
   const [allUsers, setAllUsers] = useState([]);
+  const [searchName, setSearchName] = useState("");
 
   const getAllUsers = async () => {
     //initialize service
@@ -20,7 +21,12 @@ const Users = () => {
     }));
     setAllUsers(data);
   };
-  console.log(allUsers);
+
+  function search(rows) {
+    return rows.filter(
+      (row) => row.firstName.toLowerCase().indexOf(searchName) > -1
+    );
+  }
 
   useEffect(() => {
     getAllUsers();
@@ -29,7 +35,14 @@ const Users = () => {
   return (
     <div className="users">
       <h3>List of users</h3>
-      <Userdatatable data={allUsers} />
+      <div className="search-bar">
+        <input
+          type="text"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)}
+        />
+      </div>
+      <Userdatatable data={search(allUsers)} />
     </div>
   );
 };
