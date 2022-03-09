@@ -22,11 +22,14 @@ const Users = () => {
     setAllUsers(data);
   };
 
+  //user table search filter
   function search(rows) {
     return rows.filter(
       (row) =>
         row.firstName.toLowerCase().indexOf(searchName) > -1 ||
-        row.lastName.toLowerCase().indexOf(searchName) > -1
+        row.lastName.toLowerCase().indexOf(searchName) > -1 ||
+        row.email.toLowerCase().indexOf(searchName) > -1 ||
+        row.contactNumber.toLowerCase().indexOf(searchName) > -1
     );
   }
 
@@ -36,13 +39,17 @@ const Users = () => {
 
   return (
     <div className="users">
-      <h3>List of users</h3>
       <div className="search-bar">
-        <input
-          type="text"
-          value={searchName}
-          onChange={(e) => setSearchName(e.target.value)}
-        />
+        <h3>List of users</h3>
+        <div className="search-input">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchName}
+            onChange={(e) => setSearchName(e.target.value)}
+          />
+          <ion-icon name="search"></ion-icon>
+        </div>
       </div>
       <Userdatatable data={search(allUsers)} />
     </div>
