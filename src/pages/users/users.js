@@ -24,7 +24,9 @@ const Users = () => {
 
   function search(rows) {
     return rows.filter(
-      (row) => row.firstName.toLowerCase().indexOf(searchName) > -1
+      (row) =>
+        row.firstName.toLowerCase().indexOf(searchName) > -1 ||
+        row.lastName.toLowerCase().indexOf(searchName) > -1
     );
   }
 
