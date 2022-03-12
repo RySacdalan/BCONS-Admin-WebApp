@@ -29,7 +29,9 @@ const Users = () => {
         row.firstName.toLowerCase().indexOf(searchName) > -1 ||
         row.lastName.toLowerCase().indexOf(searchName) > -1 ||
         row.email.toLowerCase().indexOf(searchName) > -1 ||
-        row.contactNumber.toLowerCase().indexOf(searchName) > -1
+        row.contactNumber.toLowerCase().indexOf(searchName) > -1 ||
+        row.brgy.toLowerCase().indexOf(searchName) > -1 ||
+        row.municipality.toLowerCase().indexOf(searchName) > -1
     );
   }
 
