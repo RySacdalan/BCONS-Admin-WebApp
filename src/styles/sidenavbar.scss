@@ -23,7 +23,7 @@
       p {
         margin: 0 8px;
       }
-      .sidenavbar-listItem {
+      a {
         display: flex;
         align-items: center;
         color: $font-color1;
@@ -35,7 +35,7 @@
           color: $red1;
         }
       }
-      .sidenavbar-listItem.active {
+      .active {
         color: $red1;
       }
       .lower-listItem {

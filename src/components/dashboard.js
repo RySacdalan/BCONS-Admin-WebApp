@@ -18,7 +18,7 @@ const Dashboard = () => {
         <div className="sidenav-container">
           <Sidenavbar />
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/home">
               <Home />
             </Route>
             <Route path="/users">
