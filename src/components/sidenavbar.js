@@ -9,28 +9,28 @@ const Sidenavbar = () => {
         <div className="sidenavbar-menu">
           <h3 className="sidenavbar-title">Dashboard</h3>
           <ul className="sidenavbar-list">
-            <NavLink to="/home">
+            <NavLink exact to="/">
               <ion-icon name="home"></ion-icon>
               <p>Home</p>
             </NavLink>
-            <NavLink to="/users">
+            <NavLink exact to="/users">
               <ion-icon name="people"></ion-icon>
               <p>Users</p>
             </NavLink>
-            <NavLink to="/reports">
+            <NavLink exact to="/reports">
               <ion-icon name="alert-circle"></ion-icon>
               <p>Reports</p>
             </NavLink>
-            <NavLink to="/history">
+            <NavLink exact to="/history">
               <ion-icon name="time"></ion-icon>
               <p>History</p>
             </NavLink>
             <div className="lower-listItem">
-              <NavLink to="/settings">
+              <NavLink exact to="/settings">
                 <ion-icon name="settings"></ion-icon>
                 <p>Settings</p>
               </NavLink>
-              <NavLink to="/bcons-information">
+              <NavLink exact to="/bcons-information">
                 <ion-icon name="information-circle"></ion-icon>
                 <p>BCONS</p>
               </NavLink>
