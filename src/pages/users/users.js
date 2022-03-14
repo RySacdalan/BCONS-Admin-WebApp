@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./users.scss";
 import { collection, getFirestore, getDocs } from "firebase/firestore";
 import Userdatatable from "../../components/userdatatable";
+import { useUserContext } from "../../context/userContext";
+import Loading from "../../components/loading";
 
 const Users = () => {
   const [allUsers, setAllUsers] = useState([]);
   const [searchName, setSearchName] = useState("");
+  const { loading } = useUserContext();
 
   const getAllUsers = async () => {
     //initialize service
@@ -53,7 +56,7 @@ const Users = () => {
           <ion-icon name="search"></ion-icon>
         </div>
       </div>
-      <Userdatatable data={search(allUsers)} />
+      {loading ? <Loading /> : <Userdatatable data={search(allUsers)} />}
     </div>
   );
 };
