@@ -26,12 +26,27 @@
     }
     .topright {
       display: flex;
-      background-color: $white2;
-      padding: 7px;
-      border-radius: 50px;
+      align-items: center;
+      .theme-wrapper {
+        height: 35px;
+        width: 35px;
+        padding: 5px;
+        margin: 0 12px;
+        border: none;
+        background: $white2;
+        border-radius: 100%;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        ion-icon {
+          font-size: 1.5rem;
+        }
+      }
       .topright_content {
         display: flex;
         align-items: center;
+        background-color: $white2;
+        padding: 7px;
+        border-radius: 50px;
         p {
           margin: 0 8px;
         }

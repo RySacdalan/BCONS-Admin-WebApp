@@ -18,9 +18,6 @@ const Topdropdown = () => {
       </div>
       {active && (
         <div className="dropdown-content">
-          <div className="dropdown-item" onClick={(e) => setIsActive(false)}>
-            <p>Darkmode</p>
-          </div>
           <div className="dropdown-item" onClick={logoutUser}>
             <p>Logout</p>
           </div>
