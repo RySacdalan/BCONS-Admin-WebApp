@@ -1,7 +1,9 @@
 import React from "react";
 import "../styles/activityinfo.scss";
+import { useUserContext } from "../context/userContext";
 
 const Activityinfo = () => {
+  const { allUsers } = useUserContext();
   return (
     <div className="activity">
       <div className="activity-item total-report">
@@ -28,7 +30,7 @@ const Activityinfo = () => {
           Total users
         </span>
         <div className="reports">
-          <h1>152</h1>
+          <h1>{allUsers.length}</h1>
         </div>
       </div>
     </div>
