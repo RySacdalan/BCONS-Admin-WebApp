@@ -1,29 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./users.scss";
-import { collection, getFirestore, getDocs } from "firebase/firestore";
 import Userdatatable from "../../components/userdatatable";
 import { useUserContext } from "../../context/userContext";
 import Loading from "../../components/loading";
 
 const Users = () => {
-  const [allUsers, setAllUsers] = useState([]);
   const [searchName, setSearchName] = useState("");
-  const { loading } = useUserContext();
-
-  const getAllUsers = async () => {
-    //initialize service
-    const db = getFirestore();
-    //collection reference
-    const colRef = collection(db, "Users");
-
-    //get data from collections
-    const querySnapshot = await getDocs(colRef);
-    const data = querySnapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-    setAllUsers(data);
-  };
+  const { loading, allUsers } = useUserContext();
 
   //user table search filter
   function search(rows) {
@@ -37,10 +20,6 @@ const Users = () => {
         row.municipality.toLowerCase().indexOf(searchName) > -1
     );
   }
-
-  useEffect(() => {
-    getAllUsers();
-  }, []);
 
   return (
     <div className="users">
