@@ -18,7 +18,7 @@
   th {
     position: sticky;
     top: 0px;
-    background-color: $red2;
+    background-color: $red1;
     padding: 8px;
     color: $white1;
     font-weight: 500;
@@ -39,5 +39,24 @@
     width: 60px;
     border-radius: 50%;
     padding: 2px;
+  }
+  .control-wrapper {
+    display: flex;
+    button {
+      width: 60px;
+      margin: 0 8px;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background-color: $red2;
+      color: $white1;
+    }
+    .edit-btn {
+      background-color: #ebd671;
+      color: $white1;
+    }
   }
 }

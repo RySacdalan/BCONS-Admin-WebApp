@@ -21,6 +21,7 @@ const Userdatatable = ({ data }) => {
               <th>Municipality</th>
               <th>Province</th>
               <th>Id</th>
+              <th>Control</th>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +42,12 @@ const Userdatatable = ({ data }) => {
                 <td>{user.municipality}</td>
                 <td>{user.province}</td>
                 <td>{user.uid}</td>
+                <td>
+                  <div className="control-wrapper">
+                    <button className="edit-btn">Edit</button>
+                    <button className="delete-btn">Delete</button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
