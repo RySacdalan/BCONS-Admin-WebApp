@@ -16,6 +16,7 @@
     border-collapse: collapse;
   }
   th {
+    z-index: 10;
     position: sticky;
     top: 0px;
     background-color: $red1;
@@ -43,9 +44,10 @@
   .control-wrapper {
     display: flex;
     button {
-      width: 60px;
+      font-size: 1.1rem;
+      width: 50px;
       margin: 0 8px;
-      padding: 8px;
+      padding: 5px;
       border-radius: 5px;
       border: none;
       cursor: pointer;
@@ -55,7 +57,7 @@
       color: $white1;
     }
     .edit-btn {
-      background-color: #ebd671;
+      background-color: #4361ee;
       color: $white1;
     }
   }

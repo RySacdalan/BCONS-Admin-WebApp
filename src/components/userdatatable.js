@@ -55,9 +55,11 @@ const Userdatatable = ({ data }) => {
                       className="edit-btn"
                       onClick={() => setModalShow(true)}
                     >
-                      Edit
+                      <ion-icon name="create"></ion-icon>
                     </button>
-                    <button className="delete-btn">Delete</button>
+                    <button className="delete-btn">
+                      <ion-icon name="trash"></ion-icon>
+                    </button>
                   </div>
                 </td>
               </tr>
