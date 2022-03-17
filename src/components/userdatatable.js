@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/userdatatable.scss";
+import MyVerticallyCenteredModal from "./updateuser";
 
 const Userdatatable = ({ data }) => {
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <div className="table-wrapper">
       <div className="table-container">
         <table>
+          <MyVerticallyCenteredModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+          />
           <thead>
             <tr>
               <th>Image</th>
@@ -44,7 +51,12 @@ const Userdatatable = ({ data }) => {
                 <td>{user.uid}</td>
                 <td>
                   <div className="control-wrapper">
-                    <button className="edit-btn">Edit</button>
+                    <button
+                      className="edit-btn"
+                      onClick={() => setModalShow(true)}
+                    >
+                      Edit
+                    </button>
                     <button className="delete-btn">Delete</button>
                   </div>
                 </td>
