@@ -1,10 +1,10 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 
-function DoughnutChart({ chartData }) {
+function DoughnutChart({ chartData, options }) {
   return (
     <div>
-      <Doughnut data={chartData} />
+      <Doughnut data={chartData} options={options}/>
     </div>
   );
 }

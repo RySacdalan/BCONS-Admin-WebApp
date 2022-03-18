@@ -64,27 +64,27 @@ function Activitychart() {
     legend: {
       display: false,
     },
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     responsive: true,
     tooltips: {
       backgroundColor: "black",
-      bodyFontColor: "blue",
-      borderColor: "red",
+      bodyFontColor: "black",
+      borderColor: "black",
       borderWidth: 1,
       enabled: true,
-      footerFontColor: "yellow",
+      footerFontColor: "black",
       intersect: false,
-      mode: "index",
-      titleFontColor: "white",
+      mode: "black",
+      titleFontColor: "black",
     },
   };
   return (
     <div className="activity">
-      <div style={{ width: 700 }}>
-        <LineChart chartData={lineData} options={{ options }} />
+      <div style={{ width: 600 }}>
+        <LineChart chartData={lineData} options={options} />
       </div>
       <div style={{ width: 300 }}>
-        <DoughnutChart chartData={userData} options={{ options }} />
+        <DoughnutChart chartData={userData} options={options} />
       </div>
     </div>
   );
