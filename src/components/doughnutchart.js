@@ -1,9 +1,12 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 
-
 function DoughnutChart({ chartData }) {
-  return <Doughnut data={chartData} />;
+  return (
+    <div>
+      <Doughnut data={chartData} />
+    </div>
+  );
 }
 
 export default DoughnutChart;
