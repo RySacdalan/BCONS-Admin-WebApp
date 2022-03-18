@@ -2,14 +2,32 @@
 
 .table-wrapper {
   max-width: 76vw;
-  padding: 12px;
+  padding: 8px;
   border-radius: 10px;
   box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.47);
   -moz-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.47);
+  .search-input {
+    display: flex;
+    justify-content: right;
+    padding: 8px;
+    font-family: inherit;
+    input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid $gray1;
+      width: 350px;
+    }
+    ion-icon {
+      position: absolute;
+      font-size: 1.5rem;
+      transform: translate(-18px, 8px);
+      color: $font-color1;
+    }
+  }
   .table-container {
     background-color: $white1;
-    max-height: 68vh;
+    max-height: 63vh;
     overflow-x: scroll;
   }
   table {

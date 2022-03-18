@@ -4,26 +4,4 @@
   flex: 4;
   padding: 25px;
   background-color: $white2;
-  h3 {
-    margin-bottom: 1rem;
-  }
-  .search-bar {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 8px;
-    font-family: inherit;
-    input {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid $gray1;
-      width: 315px;
-    }
-    ion-icon {
-      position: absolute;
-      font-size: 1.5rem;
-      transform: translate(-35px, 8px);
-      color: $font-color1;
-    }
-  }
 }
