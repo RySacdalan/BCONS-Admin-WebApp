@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "../styles/userdatatable.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { collection, getFirestore, getDocs } from "firebase/firestore";
-import { Modal, Button } from "react-bootstrap";
+import { useHistory, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  collection,
+  getFirestore,
+  getDocs,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 
-const Userdatatable = ({ data }) => {
+const Userdatatable = () => {
+  const history = useHistory();
   const [modalShow, setModalShow] = useState(false);
   const [alldocs, setAllDocs] = useState([]);
-  const [updata, setUpdata] = useState({});
   const [search, setSearch] = useState("");
 
   //Getting all data of users
@@ -27,92 +34,25 @@ const Userdatatable = ({ data }) => {
     getAllData();
   }, []);
 
-  //the modal update form
-  function MyVerticallyCenteredModal(props) {
-    const { userdata } = props;
-
-    const [value, setValue] = useState({
-      useremail: userdata.email,
-      usernumber: userdata.contactNumber,
-      userlastname: userdata.lastName,
-      userfirstname: userdata.firstName,
-    });
-
-    const { useremail, usernumber, userlastname, userfirstname } = value;
-
-    const handleChange = (name = (e) => {
-      e.preventDefault();
-      setValue({ ...value, [name]: e.target.value });
-    });
-
-    //function for updating the docs
-    const updateDoc = () => {
-      toast.success("Updating...");
-    };
-
-    //jsx for modal pop up
-    return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Update user data.
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <input
-            type="email"
-            placeholder="Edit email"
-            name="email"
-            onChange={() => {
-              handleChange("email");
-            }}
-            value={useremail}
-          />
-          <input
-            type="text"
-            placeholder="Edit number"
-            name="number"
-            onChange={() => {
-              handleChange("number");
-            }}
-            value={usernumber}
-          />
-          <input
-            type="text"
-            placeholder="Edit lastname"
-            name="lastname"
-            onChange={() => {
-              handleChange("lastname");
-            }}
-            value={userlastname}
-          />
-          <input
-            type="text"
-            placeholder="Edit firstname"
-            name="firstname"
-            onChange={() => {
-              handleChange("firstname");
-            }}
-            value={userfirstname}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            onClick={updateDoc}
-            style={{ backgroundColor: "#07bc0c", border: "none" }}
-          >
-            Save update
-          </Button>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
+  //Deleting documents
+  const onDelete = (id) => {
+    if (
+      window.confirm(
+        "Deleting this user will delete all his/her account and history of reports. Are you sure you want to delete this account permanently?"
+      )
+    ) {
+      const db = getFirestore();
+      const docRef = doc(db, "Users", id);
+      deleteDoc(docRef)
+        .then(() => {
+          toast.success("Deleted Successfully!");
+          history.push("/");
+        })
+        .catch((err) => {
+          toast.error(err);
+        });
+    }
+  };
 
   //jxs for the user's table
   return (
@@ -130,7 +70,6 @@ const Userdatatable = ({ data }) => {
           <MyVerticallyCenteredModal
             show={modalShow}
             onHide={() => setModalShow(false)}
-            userdata={updata}
           />
           <thead>
             <tr>
@@ -162,8 +101,8 @@ const Userdatatable = ({ data }) => {
                   user.data.brgy.toLowerCase().includes(search) ||
                   user.data.municipality.toLowerCase().includes(search)
               )
-              .map((doc) => (
-                <tr>
+              .map((doc, id) => (
+                <tr key={id}>
                   <td>
                     <img src={doc.data.image} alt="Profile Image" />
                   </td>
@@ -181,16 +120,21 @@ const Userdatatable = ({ data }) => {
                   <td>{doc.data.uid}</td>
                   <td>
                     <div className="control-wrapper">
+                      <Link to={`/users/${doc.data.uid}`}>
+                        <button
+                          className="edit-btn"
+                          onClick={() => {
+                            //setUpdata(doc.data);
+                            setModalShow(true);
+                          }}
+                        >
+                          <ion-icon name="create"></ion-icon>
+                        </button>
+                      </Link>
                       <button
-                        className="edit-btn"
-                        onClick={() => {
-                          setUpdata(doc.data);
-                          setModalShow(true);
-                        }}
+                        className="delete-btn"
+                        onClick={() => onDelete((id = doc.data.uid))}
                       >
-                        <ion-icon name="create"></ion-icon>
-                      </button>
-                      <button className="delete-btn">
                         <ion-icon name="trash"></ion-icon>
                       </button>
                     </div>
