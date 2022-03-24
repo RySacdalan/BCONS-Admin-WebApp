@@ -4,11 +4,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Topnavbar from "./topnavbar";
 import Sidenavbar from "./sidenavbar";
 import Home from "../pages/home/home";
-import Users from "../pages/users/users";
+//import Users from "../pages/users/users";
 import Reports from "../pages/reports/reports";
 import History from "../pages/history/history";
 import Settings from "../pages/settings/settings";
 import About from "../pages/about/about";
+import UserTable from "./usertable";
 
 const Dashboard = () => {
   return (
@@ -22,7 +23,7 @@ const Dashboard = () => {
               <Home />
             </Route>
             <Route path="/users">
-              <Users />
+              <UserTable />
             </Route>
             <Route path="/reports">
               <Reports />
