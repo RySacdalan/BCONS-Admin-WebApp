@@ -9,7 +9,7 @@ import Reports from "../pages/reports/reports";
 import History from "../pages/history/history";
 import Settings from "../pages/settings/settings";
 import About from "../pages/about/about";
-import UserTable from "./usertable";
+import UserTable from "../pages/users/usertable";
 
 const Dashboard = () => {
   return (

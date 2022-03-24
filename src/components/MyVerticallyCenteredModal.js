@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ref } from "./usertable";
+import { ref } from "../pages/users/usertable";
 import { toast } from "react-toastify";
+import "../styles/centeredmodal.scss";
 
 //Main modal update form
 function MyVerticallyCenteredModal(props) {
@@ -18,16 +19,27 @@ function MyVerticallyCenteredModal(props) {
 
   //Updating user document
   function updateDoc(editUser) {
-    ref
-      .doc(editUser.id)
-      .update(editUser)
-      .then(() => {
-        toast.success("Updated Successfully!");
-      })
-      .catch((err) => {
-        toast.error("ERROR: Failed to update user!");
-        console.log(err);
-      });
+    if (
+      email ||
+      contactNumber ||
+      street ||
+      brgy ||
+      municipality ||
+      province === ""
+    ) {
+      toast.error("ERROR: Atleast one field must be edited! Try again.");
+    } else {
+      ref
+        .doc(editUser.id)
+        .update(editUser)
+        .then(() => {
+          toast.success("Updated Successfully!");
+        })
+        .catch((err) => {
+          toast.error("ERROR: Failed to update user!");
+          console.log(err);
+        });
+    }
   }
 
   return (
@@ -44,49 +56,55 @@ function MyVerticallyCenteredModal(props) {
               <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                   <h3>
-                    Update account for {user.lastName}, {user.firstName}.
+                    Update account for: {user.lastName}, {user.firstName}.
                   </h3>
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div className="form-conainer">
+                <div className="form-container">
                   <form>
-                    <label>Email</label>
-                    <input
-                      type="text"
-                      placeholder="Email"
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label>Contact number</label>
-                    <input
-                      type="text"
-                      placeholder="Contact number"
-                      onChange={(e) => setContactNumber(e.target.value)}
-                    />
-                    <label>Street</label>
-                    <input
-                      type="text"
-                      placeholder="Street"
-                      onChange={(e) => setStreet(e.target.value)}
-                    />
-                    <label>Barangay</label>
-                    <input
-                      type="text"
-                      placeholder="Barangay"
-                      onChange={(e) => setBrgy(e.target.value)}
-                    />
-                    <label>Municipality</label>
-                    <input
-                      type="text"
-                      placeholder="Municipality"
-                      onChange={(e) => setMunicipality(e.target.value)}
-                    />
-                    <label>Province</label>
-                    <input
-                      type="text"
-                      placeholder="Province"
-                      onChange={(e) => setProvince(e.target.value)}
-                    />
+                    <div className="form-input">
+                      <label>Email</label>
+                      <input
+                        type="text"
+                        placeholder="Edit email"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      <label>Contact number</label>
+                      <input
+                        type="text"
+                        placeholder="Edit contact number"
+                        onChange={(e) => setContactNumber(e.target.value)}
+                      />
+                    </div>
+                    <div className="form-input">
+                      <label>Street</label>
+                      <input
+                        type="text"
+                        placeholder="Edit street"
+                        onChange={(e) => setStreet(e.target.value)}
+                      />
+                      <label>Barangay</label>
+                      <input
+                        type="text"
+                        placeholder="Edit barangay"
+                        onChange={(e) => setBrgy(e.target.value)}
+                      />
+                    </div>
+                    <div className="form-input">
+                      <label>Municipality</label>
+                      <input
+                        type="text"
+                        placeholder="Edit municipality"
+                        onChange={(e) => setMunicipality(e.target.value)}
+                      />
+                      <label>Province</label>
+                      <input
+                        type="text"
+                        placeholder="Edit province"
+                        onChange={(e) => setProvince(e.target.value)}
+                      />
+                    </div>
                   </form>
                 </div>
               </Modal.Body>

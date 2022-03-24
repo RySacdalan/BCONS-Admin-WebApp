@@ -1,4 +1,10 @@
-@import "./variables";
+@import "../../styles/variables";
+
+.usertable-container {
+  flex: 4;
+  padding: 25px;
+  background-color: $white2;
+}
 
 .table-wrapper {
   max-width: 76vw;

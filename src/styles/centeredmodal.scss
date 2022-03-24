@@ -1,0 +1,17 @@
+@import "./variables";
+
+.form-container {
+  form {
+    .form-input {
+      margin-bottom: 1rem;
+    }
+    label {
+      font-size: 16px;
+      margin: 0 5px;
+    }
+    input {
+      margin: 0 8px;
+      padding: 2px;
+    }
+  }
+}

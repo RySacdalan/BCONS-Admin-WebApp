@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-//import Datablock from "./datablock";
-import "../styles/usertable.scss";
-import firebase from "../firebase/firebase.config";
-import "../styles/userdatatable.scss";
-import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal";
+import "./usertable.scss";
+import firebase from "../../firebase/firebase.config";
+import MyVerticallyCenteredModal from "../../components/MyVerticallyCenteredModal";
 import { toast } from "react-toastify";
 
+//data reference
 const ref = firebase.firestore().collection("Users");
 
 const UserTable = () => {
@@ -52,9 +51,6 @@ const UserTable = () => {
   return (
     <div className="usertable-container">
       <h3>User Data Table</h3>
-
-      {/* {loader === false &&
-        data.map((user) => <Datablock user={user} key={user.uid} />)} */}
 
       <div className="table-wrapper">
         <div className="search-input">
@@ -111,6 +107,7 @@ const UserTable = () => {
                   <td>
                     <div className="control-wrapper">
                       <button
+                        className="edit-btn"
                         onClick={() => {
                           setModalShow(true);
                           setUserId(user.uid);
@@ -118,7 +115,10 @@ const UserTable = () => {
                       >
                         <ion-icon name="create"></ion-icon>
                       </button>
-                      <button onClick={() => deleteDoc(user)}>
+                      <button
+                        className="delete-btn"
+                        onClick={() => deleteDoc(user)}
+                      >
                         <ion-icon name="trash"></ion-icon>
                       </button>
                     </div>
