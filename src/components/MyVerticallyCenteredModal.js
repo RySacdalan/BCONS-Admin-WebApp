@@ -19,27 +19,47 @@ function MyVerticallyCenteredModal(props) {
 
   //Updating user document
   function updateDoc(editUser) {
-    if (
-      email ||
-      contactNumber ||
-      street ||
-      brgy ||
-      municipality ||
-      province === ""
-    ) {
-      toast.error("ERROR: Atleast one field must be edited! Try again.");
-    } else {
-      ref
-        .doc(editUser.id)
-        .update(editUser)
-        .then(() => {
-          toast.success("Updated Successfully!");
-        })
-        .catch((err) => {
-          toast.error("ERROR: Failed to update user!");
-          console.log(err);
-        });
-    }
+    ref
+      .doc(editUser.id)
+      .update(editUser)
+      .then(() => {
+        toast.success("User Updated Successfully!");
+      })
+      .catch((err) => {
+        toast.error("ERROR: Failed to update user!");
+        console.log(err);
+      });
+    // if (
+    //   email == "" ||
+    //   contactNumber == "" ||
+    //   street == "" ||
+    //   brgy == "" ||
+    //   municipality == "" ||
+    //   province == ""
+    // ) {
+    //   toast.error("ERROR: Atleast one field must be edited! Try again.");
+    //   // } else if (contactNumber == "") {
+    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
+    //   // } else if (street == "") {
+    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
+    //   // } else if (brgy == "") {
+    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
+    //   // } else if (municipality == "") {
+    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
+    //   // } else if (province == "") {
+    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
+    // } else {
+    //   ref
+    //     .doc(editUser.id)
+    //     .update(editUser)
+    //     .then(() => {
+    //       toast.success("User Updated Successfully!");
+    //     })
+    //     .catch((err) => {
+    //       toast.error("ERROR: Failed to update user!");
+    //       console.log(err);
+    //     });
+    // }
   }
 
   return (
@@ -58,21 +78,28 @@ function MyVerticallyCenteredModal(props) {
                   <h3>
                     Update account for: {user.lastName}, {user.firstName}.
                   </h3>
+                  <small>
+                    Note: Update feature is still in beta version. To
+                    successfully update an account, all fields must be populated
+                    out!
+                  </small>
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <div className="form-container">
-                  <form>
+                  <form id="modalForm">
                     <div className="form-input">
                       <label>Email</label>
                       <input
                         type="text"
+                        id="email"
                         placeholder="Edit email"
                         onChange={(e) => setEmail(e.target.value)}
                       />
                       <label>Contact number</label>
                       <input
                         type="text"
+                        id="contactNumber"
                         placeholder="Edit contact number"
                         onChange={(e) => setContactNumber(e.target.value)}
                       />
@@ -81,12 +108,14 @@ function MyVerticallyCenteredModal(props) {
                       <label>Street</label>
                       <input
                         type="text"
+                        id="street"
                         placeholder="Edit street"
                         onChange={(e) => setStreet(e.target.value)}
                       />
                       <label>Barangay</label>
                       <input
                         type="text"
+                        id="barangay"
                         placeholder="Edit barangay"
                         onChange={(e) => setBrgy(e.target.value)}
                       />
@@ -95,12 +124,14 @@ function MyVerticallyCenteredModal(props) {
                       <label>Municipality</label>
                       <input
                         type="text"
+                        id="municipality"
                         placeholder="Edit municipality"
                         onChange={(e) => setMunicipality(e.target.value)}
                       />
                       <label>Province</label>
                       <input
                         type="text"
+                        id="province"
                         placeholder="Edit province"
                         onChange={(e) => setProvince(e.target.value)}
                       />

@@ -12,6 +12,7 @@ const UserTable = () => {
   const [userId, setUserId] = useState("");
   const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
+  const [search, setSearch] = useState("");
 
   //Getting all data of users
   const getData = () => {
@@ -54,7 +55,11 @@ const UserTable = () => {
 
       <div className="table-wrapper">
         <div className="search-input">
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <ion-icon name="search"></ion-icon>
         </div>
 
@@ -86,45 +91,57 @@ const UserTable = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((user) => (
-                <tr key={user.uid}>
-                  <td>
-                    <img src={user.image} alt="Profile Image" />
-                  </td>
-                  <td>{user.lastName}</td>
-                  <td>{user.firstName}</td>
-                  <td>{user.middleInitial}</td>
-                  <td>{user.bloodType}</td>
-                  <td>{user.gender}</td>
-                  <td>{user.age}</td>
-                  <td>{user.birthday}</td>
-                  <td>{user.email}</td>
-                  <td>{user.contactNumber}</td>
-                  <td>{user.street}</td>
-                  <td>{user.brgy}</td>
-                  <td>{user.municipality}</td>
-                  <td>{user.province}</td>
-                  <td>
-                    <div className="control-wrapper">
-                      <button
-                        className="edit-btn"
-                        onClick={() => {
-                          setModalShow(true);
-                          setUserId(user.uid);
-                        }}
-                      >
-                        <ion-icon name="create"></ion-icon>
-                      </button>
-                      <button
-                        className="delete-btn"
-                        onClick={() => deleteDoc(user)}
-                      >
-                        <ion-icon name="trash"></ion-icon>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              {data
+                .filter(
+                  (user) =>
+                    // search keywords available
+                    user.firstName.toLowerCase().includes(search) ||
+                    user.lastName.toLowerCase().includes(search) ||
+                    user.email.toLowerCase().includes(search) ||
+                    user.contactNumber.toLowerCase().includes(search) ||
+                    user.brgy.toLowerCase().includes(search) ||
+                    user.municipality.toLowerCase().includes(search) ||
+                    user.province.toLowerCase().includes(search)
+                )
+                .map((user) => (
+                  <tr key={user.uid}>
+                    <td>
+                      <img src={user.image} alt="Profile Image" />
+                    </td>
+                    <td>{user.lastName}</td>
+                    <td>{user.firstName}</td>
+                    <td>{user.middleInitial}</td>
+                    <td>{user.bloodType}</td>
+                    <td>{user.gender}</td>
+                    <td>{user.age}</td>
+                    <td>{user.birthday}</td>
+                    <td>{user.email}</td>
+                    <td>{user.contactNumber}</td>
+                    <td>{user.street}</td>
+                    <td>{user.brgy}</td>
+                    <td>{user.municipality}</td>
+                    <td>{user.province}</td>
+                    <td>
+                      <div className="control-wrapper">
+                        <button
+                          className="edit-btn"
+                          onClick={() => {
+                            setModalShow(true);
+                            setUserId(user.uid);
+                          }}
+                        >
+                          <ion-icon name="create"></ion-icon>
+                        </button>
+                        <button
+                          className="delete-btn"
+                          onClick={() => deleteDoc(user)}
+                        >
+                          <ion-icon name="trash"></ion-icon>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
