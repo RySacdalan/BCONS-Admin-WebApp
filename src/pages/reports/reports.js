@@ -1,10 +1,17 @@
 import React from "react";
 import "./reports.scss";
+import Reportsdatatable from "../../components/reportdatatable";
+import { useUserContext } from "../../context/userContext";
+import Loading from "../../components/loading";
 
 const Reports = () => {
+  const { loading } = useUserContext();
   return (
-    <div className="all-reports">
-      <h3>All Reports</h3>
+    <div className="users">
+      <div className="search-bar">
+        <h3>Unsolved Reports</h3>
+      </div>
+      {loading ? <Loading /> : <Reportsdatatable />}
     </div>
   );
 };
