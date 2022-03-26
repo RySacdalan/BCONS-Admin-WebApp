@@ -20,7 +20,6 @@ function MyVerticallyCenteredModal(props) {
 
   //Updating user document
   function updateDoc(editUser) {
-<<<<<<< Updated upstream
     if (
       !email ||
       !contactNumber ||
@@ -43,50 +42,6 @@ function MyVerticallyCenteredModal(props) {
           console.log(err);
         });
     }
-=======
-    console.log(editUser);
-    ref
-      .doc(editUser.id)
-      .update(editUser)
-      .then(() => {
-        toast.success("User Updated Successfully!");
-      })
-      .catch((err) => {
-        toast.error("ERROR: Failed to update user!");
-        console.log(err);
-      });
-    // if (
-    //   email == "" ||
-    //   contactNumber == "" ||
-    //   street == "" ||
-    //   brgy == "" ||
-    //   municipality == "" ||
-    //   province == ""
-    // ) {
-    //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (contactNumber == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (street == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (brgy == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (municipality == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (province == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    // } else {
-    //   ref
-    //     .doc(editUser.id)
-    //     .update(editUser)
-    //     .then(() => {
-    //       toast.success("User Updated Successfully!");
-    //     })
-    //     .catch((err) => {
-    //       toast.error("ERROR: Failed to update user!");
-    //       console.log(err);
-    //     });
-    // }
->>>>>>> Stashed changes
   }
 
   return (
