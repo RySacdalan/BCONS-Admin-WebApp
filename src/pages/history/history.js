@@ -11,7 +11,7 @@ const History = () => {
       <div className="search-bar">
         <h3>Solved Reports</h3>
       </div>
-      
+      {loading ? <Loading /> : <Historydatatable />}
       </div>
   );
 };

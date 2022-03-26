@@ -27,18 +27,23 @@ const Reportsdatatable = () => {
     getData();
   }, []);
   function updateStatus(editReport) {
-    console.log(editReport);
+    if (
+      window.confirm(
+        "Updating this report will be permanent and can be only seen in the history of reports. Are you sure you want to mark this report as solved permanently?"
+      )
+    ) {
     ref
       .doc(editReport.id)
       .update(editReport)
       .then(() => {
-        toast.success("User Updated Successfully!");
+        toast.success("User's Report Updated Successfully!");
       })
       .catch((err) => {
         toast.error("ERROR: Failed to update user!");
         console.log(err);
       });
   }
+}
   //Deleting a report
   function deleteDoc(reportdoc) {
     console.log(reportdoc);
