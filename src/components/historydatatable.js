@@ -1,151 +1,129 @@
 import React, { useState, useEffect } from "react";
-
-import { useHistory, Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import firebase from "../firebase/firebase.config";
 import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  collection,
-  getFirestore,
-  getDocs,
-  doc,
-  deleteDoc,
-} from "firebase/firestore";
+import { toast } from "react-toastify";
 
+//data reference
+const ref = firebase.firestore().collection("User historys");
+console.log(ref);
 const Historydatatable = () => {
-  const history = useHistory();
+  const [data, setData] = useState([]);
+  const [historyStatus, sethistoryStatus] = useState("unsolved");
+  const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
-  const [alldocs, setAllDocs] = useState([]);
-  const [search, setSearch] = useState("");
-  console.log(alldocs.data);
-  //Getting all data of users
-  const getAllData = async () => {
-    const db = getFirestore();
-    const colRef = collection(db, "User Reports");
-    const querySnapshot = await getDocs(colRef);
-    querySnapshot.docs.forEach((doc) => {
-      setAllDocs((prev) => {
-        return [...prev, { data: doc.data(), id: doc.id }];
+  
+  //Getting all data of historys
+  const getData = () => {
+    ref.onSnapshot((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
       });
+      setData(items);
+      setLoader(false);
     });
   };
-
   useEffect(() => {
-    getAllData();
-    //console.log(doc.data.id);
-    //console.log(user.data.name);
+    getData();
   }, []);
-
-  //Deleting documents
-  const onDelete = (id) => {
+  function updateStatus(edithistory) {
+    console.log(edithistory);
+    ref
+      .doc(edithistory.id)
+      .update(edithistory)
+      .then(() => {
+        toast.success("User's history Updated Successfully!");
+      })
+      .catch((err) => {
+        toast.error("ERROR: Failed to update user!");
+        console.log(err);
+      });
+  }
+  //Deleting a history
+  function location(historydoc) {
+    console.log(historydoc);
     if (
       window.confirm(
-        "Deleting this user will delete all his/her account and history of reports. Are you sure you want to delete this account permanently?"
+        "Deleting this history will delete all his/her account and history of historys. Are you sure you want to delete this account permanently?"
       )
     ) {
-      const db = getFirestore();
-      const docRef = doc(db, "User Reports", id);
-      deleteDoc(docRef)
+      ref
+        .doc(historydoc.uid)
+        .delete()
         .then(() => {
-          toast.success("Deleted Successfully!");
-          history.push("/");
+          toast.success("Account Deleted Successfully!");
         })
-        .catch((err) => {
-          toast.error(err);
+        .catch(() => {
+          toast.error("ERROR: Failed to delete history!");
         });
     }
-  };
+  }
 
-  //jxs for the user's table
   return (
-    <div className="table-wrapper">
-      <div className="search-input">
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <ion-icon name="search"></ion-icon>
-      </div>
-      <div className="table-container">
-        <table>
-          <MyVerticallyCenteredModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-          />
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Type of Emergency</th>
-              <th>Description</th>
-              <th>Age</th>
-              <th>Location</th>
-              <th>Email</th>
-              <th>Sex</th>
-              <th>Date and time</th>
-              <th>Report Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {alldocs
-              .filter(
-                (user) =>
-                  //Possible search keywords
+    <div className="historytable-container">
+      
 
-                  user.data.name.toLowerCase().includes(search) ||
-                  user.data.address.toLowerCase().includes(search) ||
-                  user.data.email.toLowerCase().includes(search) ||
-                  user.data.description.toLowerCase().includes(search)
-              )
-              .map((doc, id) => {
-                if (doc.data.solvedOrUnsolved == "solved") {
-                  return (
-                    <tr key={id}>
-                      <td>
-                        <img src={doc.data.image} alt="Profile Image" />
-                      </td>
-                      <td>{doc.data.name}</td>
-                      <td>{doc.data.address}</td>
-                      <td>{doc.data.emergencyTypeOfReport}</td>
-                      <td>{doc.data.description}</td>
-                      <td>{doc.data.age}</td>
-                      <td>{doc.data.location}</td>
-                      <td>{doc.data.email}</td>
-                      <td>{doc.data.sex}</td>
-                      <td>{doc.data.dateAndTime}</td>
-                      <td>{doc.data.solvedOrUnsolved}</td>
-                      <td>
-                        <div className="control-wrapper">
-                          <Link to={`/users/${doc.data.uid}`}>
-                            <button
-                              className="edit-btn"
-                              onClick={() => {
-                                //setUpdata(doc.data);
-                                setModalShow(true);
-                              }}
-                            >
-                              <ion-icon name="create"></ion-icon>
-                            </button>
-                          </Link>
-                          <button
-                            className="delete-btn"
-                            onClick={() => onDelete((id = doc.data.uid))}
-                          >
-                            <ion-icon name="trash"></ion-icon>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                }
-              })}
-          </tbody>
-        </table>
+      <div className="table-wrapper">
+        <div className="search-input">
+          <input type="text" placeholder="Search..." />
+          <ion-icon name="search"></ion-icon>
+        </div>
+
+        <div className="table-container">
+          
+          <table>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type of history</th>
+                <th>Description</th>
+                <th>Blood Type</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>history Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((history) => {
+                if(history.status=="solved"){
+                  
+                  return (<tr key={history.id}>
+                    
+                  <td>
+                    <div className="control-wrapper">
+                      
+                      <button
+                        className="location-btn"
+                        onClick={() => location(history)}
+                      >
+                        <ion-icon name="trash"></ion-icon>
+                      </button>
+                    </div>
+                  </td>
+                  <td>
+                    <img src={history.image} alt="Profile Image" />
+                  </td>
+                  <td>{history.name}</td>
+                  <td>{history.emergencyTypeOfhistory}</td>
+                  <td>{history.description}</td>
+                  <td>{history.bloodType}</td>
+                  <td>{history.date}</td>
+                  <td>{history.time}</td>
+                  <td>{history.email}</td>
+                  <td>{history.age}</td>
+                  <td>{history.status}</td>
+                </tr>
+                  )}})}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
 };
-
+export { ref };
 export default Historydatatable;
