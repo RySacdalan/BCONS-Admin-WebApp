@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-
 import firebase from "../firebase/firebase.config";
 import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal";
 import { toast } from "react-toastify";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
-
+console.log(ref);
 const Reportsdatatable = () => {
   const [data, setData] = useState([]);
-  const [reportId, setreportId] = useState("");
+  const [reportStatus, setreportStatus] = useState("solved");
   const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
-
+  
   //Getting all data of reports
   const getData = () => {
     ref.onSnapshot((querySnapshot) => {
@@ -27,7 +26,19 @@ const Reportsdatatable = () => {
   useEffect(() => {
     getData();
   }, []);
-
+  function updateStatus(editReport) {
+    console.log(editReport);
+    ref
+      .doc(editReport.id)
+      .update(editReport)
+      .then(() => {
+        toast.success("User Updated Successfully!");
+      })
+      .catch((err) => {
+        toast.error("ERROR: Failed to update user!");
+        console.log(err);
+      });
+  }
   //Deleting a report
   function deleteDoc(reportdoc) {
     console.log(reportdoc);
@@ -59,58 +70,39 @@ const Reportsdatatable = () => {
         </div>
 
         <div className="table-container">
-          <MyVerticallyCenteredModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            data={data}
-            reportid={reportId}
-          />
+          
           <table>
             <thead>
               <tr>
+                <th>Status</th>
                 <th>Image</th>
-                <th>Lastname</th>
-                <th>Firstname</th>
-                <th>Middle Initial</th>
+                <th>Name</th>
+                <th>Type of Report</th>
+                <th>Description</th>
                 <th>Blood Type</th>
-                <th>Gender</th>
-                <th>Age</th>
-                <th>Birthday</th>
+                <th>Date</th>
+                <th>Time</th>
                 <th>Email</th>
-                <th>Contact number</th>
-                <th>Street</th>
-                <th>Barangay</th>
-                <th>Municipality</th>
-                <th>Province</th>
-                <th>Control</th>
+                <th>Age</th>
+                <th>Report Status</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((report) => (
-                <tr key={report.id}>
-                  <td>
-                    <img src={report.image} alt="Profile Image" />
-                  </td>
-                  <td>{report.lastName}</td>
-                  <td>{report.firstName}</td>
-                  <td>{report.middleInitial}</td>
-                  <td>{report.bloodType}</td>
-                  <td>{report.gender}</td>
-                  <td>{report.age}</td>
-                  <td>{report.birthday}</td>
-                  <td>{report.email}</td>
-                  <td>{report.contactNumber}</td>
-                  <td>{report.street}</td>
-                  <td>{report.brgy}</td>
-                  <td>{report.municipality}</td>
-                  <td>{report.province}</td>
+              {data.map((report) => {
+                if(report.status=="unsolved"){
+                  
+                  return (<tr key={report.id}>
+                    
                   <td>
                     <div className="control-wrapper">
                       <button
                         className="edit-btn"
                         onClick={() => {
-                          setModalShow(true);
-                          setreportId(report.uid);
+                          
+                          updateStatus({
+                            status:reportStatus,
+                            id: report.reportId,
+                          });
                         }}
                       >
                         <ion-icon name="create"></ion-icon>
@@ -123,8 +115,20 @@ const Reportsdatatable = () => {
                       </button>
                     </div>
                   </td>
+                  <td>
+                    <img src={report.image} alt="Profile Image" />
+                  </td>
+                  <td>{report.name}</td>
+                  <td>{report.emergencyTypeOfReport}</td>
+                  <td>{report.description}</td>
+                  <td>{report.bloodType}</td>
+                  <td>{report.date}</td>
+                  <td>{report.time}</td>
+                  <td>{report.email}</td>
+                  <td>{report.age}</td>
+                  <td>{report.status}</td>
                 </tr>
-              ))}
+                  )}})}
             </tbody>
           </table>
         </div>
