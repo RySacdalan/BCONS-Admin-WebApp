@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ref } from "../pages/users/usertable";
 import { toast } from "react-toastify";
 import "../styles/centeredmodal.scss";
+import { v4 as uuidv4 } from "uuid";
 
 //Main modal update form
 function MyVerticallyCenteredModal(props) {
@@ -19,51 +20,32 @@ function MyVerticallyCenteredModal(props) {
 
   //Updating user document
   function updateDoc(editUser) {
-    ref
-      .doc(editUser.id)
-      .update(editUser)
-      .then(() => {
-        toast.success("User Updated Successfully!");
-      })
-      .catch((err) => {
-        toast.error("ERROR: Failed to update user!");
-        console.log(err);
-      });
-    // if (
-    //   email == "" ||
-    //   contactNumber == "" ||
-    //   street == "" ||
-    //   brgy == "" ||
-    //   municipality == "" ||
-    //   province == ""
-    // ) {
-    //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (contactNumber == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (street == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (brgy == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (municipality == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    //   // } else if (province == "") {
-    //   //   toast.error("ERROR: Atleast one field must be edited! Try again.");
-    // } else {
-    //   ref
-    //     .doc(editUser.id)
-    //     .update(editUser)
-    //     .then(() => {
-    //       toast.success("User Updated Successfully!");
-    //     })
-    //     .catch((err) => {
-    //       toast.error("ERROR: Failed to update user!");
-    //       console.log(err);
-    //     });
-    // }
+    if (
+      !email ||
+      !contactNumber ||
+      !street ||
+      !brgy ||
+      !municipality ||
+      !province
+    ) {
+      toast.error("ERROR: All fields are required! Try again.");
+    } else {
+      ref
+        .doc(editUser.id)
+        .update(editUser)
+        .then(() => {
+          toast.success("User Updated Successfully!");
+          window.location.reload(true);
+        })
+        .catch((err) => {
+          toast.error("ERROR: Failed to update user!");
+          console.log(err);
+        });
+    }
   }
 
   return (
-    <div>
+    <div key={uuidv4()}>
       {data.map((user) => {
         if (user.uid == userid) {
           return (
@@ -72,23 +54,24 @@ function MyVerticallyCenteredModal(props) {
               size="lg"
               aria-labelledby="contained-modal-title-vcenter"
               centered
+              key={uuidv4()}
             >
-              <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                  <h3>
+              <Modal.Header key={uuidv4()}>
+                <Modal.Title id="contained-modal-title-vcenter" key={uuidv4()}>
+                  <h3 key={uuidv4()}>
                     Update account for: {user.lastName}, {user.firstName}.
                   </h3>
-                  <small>
+                  <p key={uuidv4()}>
                     Note: Update feature is still in beta version. To
                     successfully update an account, all fields must be populated
                     out!
-                  </small>
+                  </p>
                 </Modal.Title>
               </Modal.Header>
-              <Modal.Body>
-                <div className="form-container">
-                  <form id="modalForm">
-                    <div className="form-input">
+              <Modal.Body key={uuidv4()}>
+                <div className="form-container" key={uuidv4()}>
+                  <form id="modalForm" key={uuidv4()}>
+                    <div className="form-input" key={uuidv4()}>
                       <label>Email</label>
                       <input
                         type="text"
@@ -104,7 +87,7 @@ function MyVerticallyCenteredModal(props) {
                         onChange={(e) => setContactNumber(e.target.value)}
                       />
                     </div>
-                    <div className="form-input">
+                    <div className="form-input" key={uuidv4()}>
                       <label>Street</label>
                       <input
                         type="text"
@@ -120,7 +103,7 @@ function MyVerticallyCenteredModal(props) {
                         onChange={(e) => setBrgy(e.target.value)}
                       />
                     </div>
-                    <div className="form-input">
+                    <div className="form-input" key={uuidv4()}>
                       <label>Municipality</label>
                       <input
                         type="text"
@@ -139,7 +122,7 @@ function MyVerticallyCenteredModal(props) {
                   </form>
                 </div>
               </Modal.Body>
-              <Modal.Footer>
+              <Modal.Footer key={uuidv4()}>
                 <Button
                   style={{ backgroundColor: "#07bc0c", border: "none" }}
                   onClick={() => {

@@ -10,31 +10,32 @@ import History from "../pages/history/history";
 import Settings from "../pages/settings/settings";
 import About from "../pages/about/about";
 import UserTable from "../pages/users/usertable";
+import { v4 as uuidv4 } from "uuid";
 
 const Dashboard = () => {
   return (
-    <Router className="dashboard">
-      <div className="dashboard_wrapper">
-        <Topnavbar />
-        <div className="sidenav-container">
-          <Sidenavbar />
-          <Switch>
-            <Route exact path="/">
+    <Router className="dashboard" key={uuidv4()}>
+      <div className="dashboard_wrapper" key={uuidv4()}>
+        <Topnavbar key={uuidv4()} />
+        <div className="sidenav-container" key={uuidv4()}>
+          <Sidenavbar key={uuidv4()} />
+          <Switch key={uuidv4()}>
+            <Route exact path="/" key={uuidv4()}>
               <Home />
             </Route>
-            <Route path="/users">
+            <Route path="/users" key={uuidv4()}>
               <UserTable />
             </Route>
-            <Route path="/reports">
+            <Route path="/reports" key={uuidv4()}>
               <Reports />
             </Route>
-            <Route path="/history">
+            <Route path="/history" key={uuidv4()}>
               <History />
             </Route>
-            <Route path="/settings">
+            <Route path="/settings" key={uuidv4()}>
               <Settings />
             </Route>
-            <Route path="/bcons-information">
+            <Route path="/bcons-information" key={uuidv4()}>
               <About />
             </Route>
           </Switch>

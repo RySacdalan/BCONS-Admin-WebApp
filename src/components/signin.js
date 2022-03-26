@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useUserContext } from "../context/userContext";
+import { v4 as uuidv4 } from "uuid";
 
 const Signin = () => {
   const emailRef = useRef();
@@ -23,13 +24,24 @@ const Signin = () => {
   };
 
   return (
-    <div className="form">
-      {error && <p className="error">{error}</p>}
+    <div className="form" key={uuidv4()}>
+      {error && (
+        <p className="error" key={uuidv4()}>
+          {error}
+        </p>
+      )}
       <h2>Admin login</h2>
-      <form onSubmit={onSubmit}>
-        <input placeholder="Email" type="email" ref={emailRef} />
-        <input placeholder="Password" type="password" ref={psdRef} />
-        <button type="submit">Sign In</button>
+      <form onSubmit={onSubmit} key={uuidv4()}>
+        <input placeholder="Email" type="email" ref={emailRef} key={uuidv4()} />
+        <input
+          placeholder="Password"
+          type="password"
+          ref={psdRef}
+          key={uuidv4()}
+        />
+        <button type="submit" key={uuidv4()}>
+          Sign In
+        </button>
         <p onClick={forgotPasswordHandler}>Forgot Password</p>
       </form>
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import "./usertable.scss";
 import firebase from "../../firebase/firebase.config";
@@ -10,7 +11,6 @@ const ref = firebase.firestore().collection("Users");
 const UserTable = () => {
   const [data, setData] = useState([]);
   const [userId, setUserId] = useState("");
-  const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -22,7 +22,6 @@ const UserTable = () => {
         items.push(doc.data());
       });
       setData(items);
-      setLoader(false);
     });
   };
   useEffect(() => {
