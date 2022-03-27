@@ -28,16 +28,6 @@ const Sidenavbar = () => {
               <ion-icon name="time"></ion-icon>
               <p>History</p>
             </NavLink>
-            <div className="lower-listItem" key={uuidv4()}>
-              <NavLink exact to="/settings" key={uuidv4()}>
-                <ion-icon name="settings"></ion-icon>
-                <p>Settings</p>
-              </NavLink>
-              <NavLink exact to="/bcons-information" key={uuidv4()}>
-                <ion-icon name="information-circle"></ion-icon>
-                <p>BCONS</p>
-              </NavLink>
-            </div>
           </ul>
         </div>
       </div>
