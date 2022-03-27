@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/activityinfo.scss";
 import { useUserContext } from "../context/userContext";
 import { v4 as uuidv4 } from "uuid";
+import { ReportContext } from "../context/reportContext";
 
 const Activityinfo = () => {
   const { allUsers } = useUserContext();
+  const { reports } = useContext(ReportContext);
+
   return (
     <div className="activity" key={uuidv4()}>
       <div className="activity-item total-report" key={uuidv4()}>
@@ -13,7 +16,7 @@ const Activityinfo = () => {
           Total reports
         </span>
         <div className="reports" key={uuidv4()}>
-          <h1>18</h1>
+          <h1>{reports.length}</h1>
         </div>
       </div>
       <div className="activity-item unsolve-report" key={uuidv4()}>
