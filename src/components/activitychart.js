@@ -6,10 +6,10 @@ import Piechart from "./piechart";
 function Activitychart() {
   return (
     <div className="activity">
-      <div style={{ width: 600 }}>
+      <div className="chart-container">
         <Barchart />
       </div>
-      <div style={{ width: 300 }}>
+      <div className="chart-container">
         <Piechart />
       </div>
     </div>

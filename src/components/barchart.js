@@ -14,10 +14,10 @@ const Barchart = () => {
           labels: [
             "Fire",
             "Flood",
-            "Crime",
+            "Crime ",
             "Earthquake",
             "Accident",
-            "Health Emergency",
+            "Health Reports",
           ],
           datasets: [
             {
@@ -36,9 +36,15 @@ const Barchart = () => {
         }}
         options={{
           maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: "Total Reports by Emergencies",
+            },
+          },
         }}
-        height={400}
-        width={600}
+        height={312}
+        width={612}
       />
     </div>
   );

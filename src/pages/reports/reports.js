@@ -7,7 +7,7 @@ import Loading from "../../components/loading";
 const Reports = () => {
   const { loading } = useUserContext();
   return (
-    <div className="users">
+    <div className="reports-container">
       <div className="search-bar">
         <h3>Unsolved Reports</h3>
       </div>

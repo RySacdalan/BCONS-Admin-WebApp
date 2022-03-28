@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
 import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal";
 import { toast } from "react-toastify";
+import "../styles/reportdatatable.scss";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
@@ -11,7 +12,7 @@ const Reportsdatatable = () => {
   const [reportStatus, setreportStatus] = useState("solved");
   const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
-  
+
   //Getting all data of reports
   const getData = () => {
     ref.onSnapshot((querySnapshot) => {
@@ -32,18 +33,18 @@ const Reportsdatatable = () => {
         "Updating this report will be permanent and can be only seen in the history of reports. Are you sure you want to mark this report as solved permanently?"
       )
     ) {
-    ref
-      .doc(editReport.id)
-      .update(editReport)
-      .then(() => {
-        toast.success("User's Report Updated Successfully!");
-      })
-      .catch((err) => {
-        toast.error("ERROR: Failed to update user!");
-        console.log(err);
-      });
+      ref
+        .doc(editReport.id)
+        .update(editReport)
+        .then(() => {
+          toast.success("User's Report Updated Successfully!");
+        })
+        .catch((err) => {
+          toast.error("ERROR: Failed to update user!");
+          console.log(err);
+        });
+    }
   }
-}
   //Deleting a report
   function deleteDoc(reportdoc) {
     console.log(reportdoc);
@@ -65,9 +66,7 @@ const Reportsdatatable = () => {
   }
 
   return (
-    <div className="reporttable-container">
-      
-
+    <div className="report-container">
       <div className="table-wrapper">
         <div className="search-input">
           <input type="text" placeholder="Search..." />
@@ -75,7 +74,6 @@ const Reportsdatatable = () => {
         </div>
 
         <div className="table-container">
-          
           <table>
             <thead>
               <tr>
@@ -94,46 +92,46 @@ const Reportsdatatable = () => {
             </thead>
             <tbody>
               {data.map((report) => {
-                if(report.status=="unsolved"){
-                  
-                  return (<tr key={report.id}>
-                    
-                  <td>
-                    <div className="control-wrapper">
-                      <button
-                        className="edit-btn"
-                        onClick={() => {
-                          
-                          updateStatus({
-                            status:reportStatus,
-                            id: report.reportId,
-                          });
-                        }}
-                      >
-                        <ion-icon name="create"></ion-icon>
-                      </button>
-                      <button
-                        className="delete-btn"
-                        onClick={() => deleteDoc(report)}
-                      >
-                        <ion-icon name="trash"></ion-icon>
-                      </button>
-                    </div>
-                  </td>
-                  <td>
-                    <img src={report.image} alt="Profile Image" />
-                  </td>
-                  <td>{report.name}</td>
-                  <td>{report.emergencyTypeOfReport}</td>
-                  <td>{report.description}</td>
-                  <td>{report.bloodType}</td>
-                  <td>{report.date}</td>
-                  <td>{report.time}</td>
-                  <td>{report.email}</td>
-                  <td>{report.age}</td>
-                  <td>{report.status}</td>
-                </tr>
-                  )}})}
+                if (report.status == "unsolved") {
+                  return (
+                    <tr key={report.id}>
+                      <td>
+                        <div className="control-wrapper">
+                          <button
+                            className="edit-btn"
+                            onClick={() => {
+                              updateStatus({
+                                status: reportStatus,
+                                id: report.reportId,
+                              });
+                            }}
+                          >
+                            <ion-icon name="create"></ion-icon>
+                          </button>
+                          <button
+                            className="delete-btn"
+                            onClick={() => deleteDoc(report)}
+                          >
+                            <ion-icon name="trash"></ion-icon>
+                          </button>
+                        </div>
+                      </td>
+                      <td>
+                        <img src={report.image} alt="Profile Image" />
+                      </td>
+                      <td>{report.name}</td>
+                      <td>{report.emergencyTypeOfReport}</td>
+                      <td>{report.description}</td>
+                      <td>{report.bloodType}</td>
+                      <td>{report.date}</td>
+                      <td>{report.time}</td>
+                      <td>{report.email}</td>
+                      <td>{report.age}</td>
+                      <td>{report.status}</td>
+                    </tr>
+                  );
+                }
+              })}
             </tbody>
           </table>
         </div>

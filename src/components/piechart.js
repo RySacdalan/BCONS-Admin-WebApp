@@ -1,5 +1,5 @@
 import React from "react";
-import { Doughnut } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 
@@ -8,38 +8,31 @@ const Piechart = () => {
 
   return (
     <div className="bar-container">
-      <Doughnut
+      <Pie
         data={{
-          labels: [
-            "Fire",
-            "Flood",
-            "Crime",
-            "Earthquake",
-            "Accident",
-            "Health Emergency",
-          ],
+          labels: ["Manual", "Automatic"],
           datasets: [
             {
               label: "Number of Reports",
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                "#d42929",
-                "#f04242",
-                "#ff8787",
-                "#9cdb97",
-                "#67bf67",
-                "#36a35f",
-              ],
-              borderColor: "black",
-              borderWidth: 1,
+              data: [12, 8],
+              backgroundColor: ["#d42929", "#ff8787"],
             },
           ],
         }}
         options={{
           maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: "Type of Reports",
+            },
+            legend: {
+              position: "top",
+            },
+          },
         }}
-        height={400}
-        width={600}
+        height={312}
+        width={312}
       />
     </div>
   );

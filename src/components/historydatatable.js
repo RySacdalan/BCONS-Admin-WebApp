@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
 import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal";
 import { toast } from "react-toastify";
+import "../styles/historydatatable.scss";
 
 //data reference
 const ref = firebase.firestore().collection("User historys");
@@ -11,7 +12,7 @@ const Historydatatable = () => {
   const [historyStatus, sethistoryStatus] = useState("unsolved");
   const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
-  
+
   //Getting all data of historys
   const getData = () => {
     ref.onSnapshot((querySnapshot) => {
@@ -61,8 +62,6 @@ const Historydatatable = () => {
 
   return (
     <div className="historytable-container">
-      
-
       <div className="table-wrapper">
         <div className="search-input">
           <input type="text" placeholder="Search..." />
@@ -70,7 +69,6 @@ const Historydatatable = () => {
         </div>
 
         <div className="table-container">
-          
           <table>
             <thead>
               <tr>
@@ -89,35 +87,35 @@ const Historydatatable = () => {
             </thead>
             <tbody>
               {data.map((history) => {
-                if(history.status=="solved"){
-                  
-                  return (<tr key={history.id}>
-                    
-                  <td>
-                    <div className="control-wrapper">
-                      
-                      <button
-                        className="location-btn"
-                        onClick={() => location(history)}
-                      >
-                        <ion-icon name="trash"></ion-icon>
-                      </button>
-                    </div>
-                  </td>
-                  <td>
-                    <img src={history.image} alt="Profile Image" />
-                  </td>
-                  <td>{history.name}</td>
-                  <td>{history.emergencyTypeOfhistory}</td>
-                  <td>{history.description}</td>
-                  <td>{history.bloodType}</td>
-                  <td>{history.date}</td>
-                  <td>{history.time}</td>
-                  <td>{history.email}</td>
-                  <td>{history.age}</td>
-                  <td>{history.status}</td>
-                </tr>
-                  )}})}
+                if (history.status == "solved") {
+                  return (
+                    <tr key={history.id}>
+                      <td>
+                        <div className="control-wrapper">
+                          <button
+                            className="location-btn"
+                            onClick={() => location(history)}
+                          >
+                            <ion-icon name="trash"></ion-icon>
+                          </button>
+                        </div>
+                      </td>
+                      <td>
+                        <img src={history.image} alt="Profile Image" />
+                      </td>
+                      <td>{history.name}</td>
+                      <td>{history.emergencyTypeOfhistory}</td>
+                      <td>{history.description}</td>
+                      <td>{history.bloodType}</td>
+                      <td>{history.date}</td>
+                      <td>{history.time}</td>
+                      <td>{history.email}</td>
+                      <td>{history.age}</td>
+                      <td>{history.status}</td>
+                    </tr>
+                  );
+                }
+              })}
             </tbody>
           </table>
         </div>

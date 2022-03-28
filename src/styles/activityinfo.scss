@@ -3,11 +3,11 @@
 .activity {
   display: flex;
   justify-content: space-around;
-  margin-top: 1rem;
+  margin-bottom: 0.899rem;
+  overflow: hidden;
 }
 .activity-item {
-  padding: 25px;
-  margin: 0 25px;
+  padding: 16px;
   width: 25%;
   border-radius: 10px !important;
   color: $white1;
