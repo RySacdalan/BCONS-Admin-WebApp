@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
-import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal";
 import { toast } from "react-toastify";
 import "../styles/reportdatatable.scss";
+import LocationModal from "./locationModal";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
-console.log(ref);
+
 const Reportsdatatable = () => {
   const [data, setData] = useState([]);
+  const [reportId, setReportId] = useState("");
   const [reportStatus, setreportStatus] = useState("solved");
   const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
@@ -45,25 +46,6 @@ const Reportsdatatable = () => {
         });
     }
   }
-  //Deleting a report
-  function deleteDoc(reportdoc) {
-    console.log(reportdoc);
-    if (
-      window.confirm(
-        "Deleting this report will delete all his/her account and history of reports. Are you sure you want to delete this account permanently?"
-      )
-    ) {
-      ref
-        .doc(reportdoc.uid)
-        .delete()
-        .then(() => {
-          toast.success("Account Deleted Successfully!");
-        })
-        .catch(() => {
-          toast.error("ERROR: Failed to delete report!");
-        });
-    }
-  }
 
   return (
     <div className="report-container">
@@ -74,6 +56,13 @@ const Reportsdatatable = () => {
         </div>
 
         <div className="table-container">
+        <LocationModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            data={data}
+            reportid={reportId}
+            
+          />
           <table>
             <thead>
               <tr>
@@ -94,6 +83,7 @@ const Reportsdatatable = () => {
               {data.map((report) => {
                 if (report.status == "unsolved") {
                   return (
+                    
                     <tr key={report.id}>
                       <td>
                         <div className="control-wrapper">
@@ -110,9 +100,12 @@ const Reportsdatatable = () => {
                           </button>
                           <button
                             className="delete-btn"
-                            onClick={() => deleteDoc(report)}
+                            onClick={() => {
+                              setModalShow(true);
+                              setReportId(report.reportId);
+                            }}
                           >
-                            <ion-icon name="trash"></ion-icon>
+                            <ion-icon name="location"></ion-icon>
                           </button>
                         </div>
                       </td>
