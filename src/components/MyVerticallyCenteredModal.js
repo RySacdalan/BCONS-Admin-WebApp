@@ -58,10 +58,13 @@ function MyVerticallyCenteredModal(props) {
             >
               <Modal.Header key={uuidv4()}>
                 <Modal.Title id="contained-modal-title-vcenter" key={uuidv4()}>
-                  <h3 key={uuidv4()}>
+                  <h3 key={uuidv4()} style={{ fontSize: "28px" }}>
                     Update account for: {user.lastName}, {user.firstName}.
                   </h3>
-                  <p key={uuidv4()}>
+                  <p
+                    key={uuidv4()}
+                    style={{ fontSize: "18px", color: "#ef233c" }}
+                  >
                     Note: Update feature is still in beta version. To
                     successfully update an account, all fields must be populated
                     out!

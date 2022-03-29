@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "../styles/historydatatable.scss";
 
 //data reference
-const ref = firebase.firestore().collection("User historys");
+const ref = firebase.firestore().collection("User Reports");
 console.log(ref);
 const Historydatatable = () => {
   const [data, setData] = useState([]);
@@ -27,19 +27,7 @@ const Historydatatable = () => {
   useEffect(() => {
     getData();
   }, []);
-  function updateStatus(edithistory) {
-    console.log(edithistory);
-    ref
-      .doc(edithistory.id)
-      .update(edithistory)
-      .then(() => {
-        toast.success("User's history Updated Successfully!");
-      })
-      .catch((err) => {
-        toast.error("ERROR: Failed to update user!");
-        console.log(err);
-      });
-  }
+
   //Deleting a history
   function location(historydoc) {
     console.log(historydoc);
@@ -87,7 +75,7 @@ const Historydatatable = () => {
             </thead>
             <tbody>
               {data.map((history) => {
-                if (history.status == "solved") {
+                if (history.status === "solved") {
                   return (
                     <tr key={history.id}>
                       <td>
@@ -101,7 +89,7 @@ const Historydatatable = () => {
                         </div>
                       </td>
                       <td>
-                        <img src={history.image} alt="Profile Image" />
+                        <img src={history.image} alt="Report Image" />
                       </td>
                       <td>{history.name}</td>
                       <td>{history.emergencyTypeOfhistory}</td>
@@ -123,5 +111,5 @@ const Historydatatable = () => {
     </div>
   );
 };
-export { ref };
+
 export default Historydatatable;
