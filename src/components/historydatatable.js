@@ -6,13 +6,8 @@ import LocationModal from "./locationModal";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
-<<<<<<< Updated upstream
 console.log(ref);
 const Historydatatable = () => {
-=======
-
-const Reportsdatatable = () => {
->>>>>>> Stashed changes
   const [data, setData] = useState([]);
   const [reportId, setReportId] = useState("");
   const [reportStatus, setreportStatus] = useState("solved");
@@ -120,10 +115,5 @@ const Reportsdatatable = () => {
     </div>
   );
 };
-<<<<<<< Updated upstream
 
 export default Historydatatable;
-=======
-export { ref };
-export default Reportsdatatable;
->>>>>>> Stashed changes
