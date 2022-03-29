@@ -35,7 +35,9 @@ function MyVerticallyCenteredModal(props) {
         .update(editUser)
         .then(() => {
           toast.success("User Updated Successfully!");
-          window.location.reload(true);
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 3000);
         })
         .catch((err) => {
           toast.error("ERROR: Failed to update user!");
@@ -45,7 +47,7 @@ function MyVerticallyCenteredModal(props) {
   }
 
   return (
-    <div key={uuidv4()}>
+    <div>
       {data.map((user) => {
         if (user.uid == userid) {
           return (
@@ -54,24 +56,23 @@ function MyVerticallyCenteredModal(props) {
               size="lg"
               aria-labelledby="contained-modal-title-vcenter"
               centered
-              key={uuidv4()}
             >
-              <Modal.Header key={uuidv4()}>
-                <Modal.Title id="contained-modal-title-vcenter" key={uuidv4()}>
-                  <h3 key={uuidv4()}>
+              <Modal.Header>
+                <Modal.Title id="contained-modal-title-vcenter">
+                  <h3 style={{ fontSize: "28px" }}>
                     Update account for: {user.lastName}, {user.firstName}.
                   </h3>
-                  <p key={uuidv4()}>
+                  <p style={{ fontSize: "18px", color: "#ef233c" }}>
                     Note: Update feature is still in beta version. To
                     successfully update an account, all fields must be populated
                     out!
                   </p>
                 </Modal.Title>
               </Modal.Header>
-              <Modal.Body key={uuidv4()}>
-                <div className="form-container" key={uuidv4()}>
-                  <form id="modalForm" key={uuidv4()}>
-                    <div className="form-input" key={uuidv4()}>
+              <Modal.Body>
+                <div className="form-container">
+                  <form id="modalForm">
+                    <div className="form-input">
                       <label>Email</label>
                       <input
                         type="text"
@@ -87,7 +88,7 @@ function MyVerticallyCenteredModal(props) {
                         onChange={(e) => setContactNumber(e.target.value)}
                       />
                     </div>
-                    <div className="form-input" key={uuidv4()}>
+                    <div className="form-input">
                       <label>Street</label>
                       <input
                         type="text"
@@ -103,7 +104,7 @@ function MyVerticallyCenteredModal(props) {
                         onChange={(e) => setBrgy(e.target.value)}
                       />
                     </div>
-                    <div className="form-input" key={uuidv4()}>
+                    <div className="form-input">
                       <label>Municipality</label>
                       <input
                         type="text"
@@ -122,7 +123,7 @@ function MyVerticallyCenteredModal(props) {
                   </form>
                 </div>
               </Modal.Body>
-              <Modal.Footer key={uuidv4()}>
+              <Modal.Footer>
                 <Button
                   style={{ backgroundColor: "#07bc0c", border: "none" }}
                   onClick={() => {

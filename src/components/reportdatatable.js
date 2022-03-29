@@ -81,7 +81,7 @@ const Reportsdatatable = () => {
             </thead>
             <tbody>
               {data.map((report) => {
-                if (report.status == "unsolved") {
+                if (report.length != 0 && report.status === "unsolved") {
                   return (
                     
                     <tr key={report.id}>
