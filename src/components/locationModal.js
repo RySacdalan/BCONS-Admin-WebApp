@@ -56,7 +56,9 @@ function LocationModal(props) {
                     <GoogleMap 
                     mapContainerStyle = {mapContainerStyle} 
                     zoom = {12}
-                    center = {center}
+                    center = {{
+                      lat: parseFloat(report.latitude), 
+                      lng: parseFloat(report.longitude)}}
                     options ={options}
                     >
                       <Marker position={{
