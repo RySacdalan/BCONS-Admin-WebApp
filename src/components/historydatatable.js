@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
-import MyVerticallyCenteredModal from "./MyVerticallyCenteredModal";
 import { toast } from "react-toastify";
-import "../styles/historydatatable.scss";
+import "../styles/reportdatatable.scss";
+import LocationModal from "./locationModal";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
+<<<<<<< Updated upstream
 console.log(ref);
 const Historydatatable = () => {
+=======
+
+const Reportsdatatable = () => {
+>>>>>>> Stashed changes
   const [data, setData] = useState([]);
-  const [historyStatus, sethistoryStatus] = useState("unsolved");
+  const [reportId, setReportId] = useState("");
+  const [reportStatus, setreportStatus] = useState("solved");
   const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
 
-  //Getting all data of historys
+  //Getting all data of reports
   const getData = () => {
     ref.onSnapshot((querySnapshot) => {
       const items = [];
@@ -28,28 +34,9 @@ const Historydatatable = () => {
     getData();
   }, []);
 
-  //Deleting a history
-  function location(historydoc) {
-    console.log(historydoc);
-    if (
-      window.confirm(
-        "Deleting this history will delete all his/her account and history of historys. Are you sure you want to delete this account permanently?"
-      )
-    ) {
-      ref
-        .doc(historydoc.uid)
-        .delete()
-        .then(() => {
-          toast.success("Account Deleted Successfully!");
-        })
-        .catch(() => {
-          toast.error("ERROR: Failed to delete history!");
-        });
-    }
-  }
 
   return (
-    <div className="historytable-container">
+    <div className="history-container">
       <div className="table-wrapper">
         <div className="search-input">
           <input type="text" placeholder="Search..." />
@@ -57,34 +44,56 @@ const Historydatatable = () => {
         </div>
 
         <div className="table-container">
+        <LocationModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            data={data}
+            reportid={reportId}
+            
+          />
           <table>
             <thead>
               <tr>
                 <th>Status</th>
                 <th>Image</th>
                 <th>Name</th>
-                <th>Type of history</th>
+                <th>Type of Report</th>
                 <th>Description</th>
                 <th>Blood Type</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Email</th>
                 <th>Age</th>
-                <th>history Status</th>
+                <th>Report Status</th>
               </tr>
             </thead>
             <tbody>
               {data.map((history) => {
                 if (history.status === "solved") {
                   return (
+                    
                     <tr key={history.id}>
                       <td>
                         <div className="control-wrapper">
                           <button
-                            className="location-btn"
-                            onClick={() => location(history)}
+                            className="edit-btn"
+                            onClick={() => {
+                              updateStatus({
+                                status: reportStatus,
+                                id: history.reportId,
+                              });
+                            }}
                           >
-                            <ion-icon name="trash"></ion-icon>
+                            <ion-icon name="create"></ion-icon>
+                          </button>
+                          <button
+                            className="delete-btn"
+                            onClick={() => {
+                              setModalShow(true);
+                              setReportId(history.reportId);
+                            }}
+                          >
+                            <ion-icon name="location"></ion-icon>
                           </button>
                         </div>
                       </td>
@@ -92,7 +101,7 @@ const Historydatatable = () => {
                         <img src={history.image} alt="Report Image" />
                       </td>
                       <td>{history.name}</td>
-                      <td>{history.emergencyTypeOfhistory}</td>
+                      <td>{history.emergencyTypeOfReport}</td>
                       <td>{history.description}</td>
                       <td>{history.bloodType}</td>
                       <td>{history.date}</td>
@@ -111,5 +120,10 @@ const Historydatatable = () => {
     </div>
   );
 };
+<<<<<<< Updated upstream
 
 export default Historydatatable;
+=======
+export { ref };
+export default Reportsdatatable;
+>>>>>>> Stashed changes
