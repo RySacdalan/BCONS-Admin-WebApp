@@ -8,38 +8,27 @@ const Piechart = () => {
   Chart.register(CategoryScale);
 
   //All report from context
-  const { reports, nearbyReports } = useContext(ReportContext);
+  const { reports } = useContext(ReportContext);
 
   //Get number of manual reports
   const manual = reports.filter((report) => {
     return report.autoOrManual === "manual";
   });
 
-  const manualNearby = nearbyReports.filter((nearby) => {
-    return nearby.autoOrManual === "manual";
-  });
-
   //Get number of automatic reports
   const automatic = reports.filter((report) => {
-    return report.autoOrManual === "automatic";
-  });
-
-  const automaticNearby = nearbyReports.filter((nearby) => {
-    return nearby.autoOrManual === "automatic";
+    return report.autoOrManual === "automated";
   });
 
   return (
     <div className="bar-container">
       <Pie
         data={{
-          labels: ["Manual", "Automatic"],
+          labels: ["Manual", "Automated"],
           datasets: [
             {
               label: "Number of Reports",
-              data: [
-                manual.length + manualNearby.length,
-                automatic.length + automaticNearby.length,
-              ],
+              data: [manual.length, automatic.length],
               backgroundColor: ["#d42929", "#ff8787"],
             },
           ],

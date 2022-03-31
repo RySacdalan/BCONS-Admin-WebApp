@@ -6,14 +6,10 @@ import { ReportContext } from "../context/reportContext";
 
 const Activityinfo = () => {
   const { allUsers } = useUserContext();
-  const { reports, nearbyReports } = useContext(ReportContext);
+  const { reports } = useContext(ReportContext);
 
   const unsolveReports = reports.filter((report) => {
     return report.status === "unsolved";
-  });
-
-  const unsolveNearby = nearbyReports.filter((nearby) => {
-    return nearby.status === "unsolved";
   });
 
   return (
@@ -24,7 +20,7 @@ const Activityinfo = () => {
           Total reports
         </span>
         <div className="reports" key={uuidv4()}>
-          <h1>{reports.length + nearbyReports.length}</h1>
+          <h1>{reports.length}</h1>
         </div>
       </div>
       <div className="activity-item unsolve-report" key={uuidv4()}>
@@ -33,7 +29,7 @@ const Activityinfo = () => {
           Unsolve reports
         </span>
         <div className="reports" key={uuidv4()}>
-          <h1>{unsolveReports.length + unsolveNearby.length}</h1>
+          <h1>{unsolveReports.length}</h1>
         </div>
       </div>
       <div className="activity-item total-users" key={uuidv4()}>

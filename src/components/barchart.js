@@ -9,7 +9,7 @@ const Barchart = () => {
   Chart.register(CategoryScale);
 
   //Reports from context
-  const { reports, nearbyReports } = useContext(ReportContext);
+  const { reports } = useContext(ReportContext);
 
   //Fire reports
   const fire = reports.filter((report) => {
@@ -41,37 +41,6 @@ const Barchart = () => {
     return report.emergencyTypeOfReport === "Health Emergency";
   });
 
-  //REPORTS FROM NEARBY REPORTS
-  //Fire reports
-  const fireNearby = nearbyReports.filter((nearby) => {
-    return nearby.emergencyTypeOfReport === "Fire";
-  });
-
-  //Flood reports
-  const floodNearby = nearbyReports.filter((nearby) => {
-    return nearby.emergencyTypeOfReport === "Flood";
-  });
-
-  //Crime reports
-  const crimeNearby = nearbyReports.filter((nearby) => {
-    return nearby.emergencyTypeOfReport === "Crime";
-  });
-
-  //Accident reports
-  const accidentNearby = nearbyReports.filter((nearby) => {
-    return nearby.emergencyTypeOfReport === "Accident";
-  });
-
-  //Earthquake reports
-  const earthquakeNearby = nearbyReports.filter((nearby) => {
-    return nearby.emergencyTypeOfReport === "Earthquake";
-  });
-
-  //Health emergency reports
-  const healthNearby = nearbyReports.filter((nearby) => {
-    return nearby.emergencyTypeOfReport === "Health Emergency";
-  });
-
   return (
     <div className="bar-container">
       <Bar
@@ -88,12 +57,12 @@ const Barchart = () => {
             {
               label: "Number of Reports",
               data: [
-                fire.length + fireNearby.length,
-                flood.length + floodNearby.length,
-                crime.length + crimeNearby.length,
-                earthquake.length + earthquakeNearby.length,
-                accident.length + accidentNearby.length,
-                health.length + healthNearby.length,
+                fire.length,
+                flood.length,
+                crime.length,
+                earthquake.length,
+                accident.length,
+                health.length,
               ],
               backgroundColor: [
                 "#d42929",
