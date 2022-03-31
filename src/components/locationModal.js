@@ -1,21 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ref } from "./reportdatatable";
-import { toast } from "react-toastify";
 import "../styles/centeredmodal.scss";
 import { v4 as uuidv4 } from "uuid";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import mapStyles from "./mapStyles";
 
 const mapContainerStyle = {
-  width: "60vw",
-  height: "50vh",
+  width: "765px",
+  height: "350px",
 };
-const center = {
-  lat: 14.79334,
-  lng: 120.879997,
-};
+
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
@@ -42,31 +37,38 @@ function LocationModal(props) {
             >
               <Modal.Header key={uuidv4()}>
                 <Modal.Title id="contained-modal-title-vcenter" key={uuidv4()}>
-                  <h3 key={uuidv4()}>Live location of: {report.name}.</h3>
-                  <p key={uuidv4()}>
-                    Note: This location is based on the location of the user
+                  <h3 key={uuidv4()} style={{ fontSize: "28px" }}>
+                    Live location of: {report.name}.
+                  </h3>
+                  <p
+                    key={uuidv4()}
+                    style={{ fontSize: "18px", color: "#ef233c" }}
+                  >
+                    Note: This map is based on the realtime location of the user
                     when he or she reported the emergency.
                   </p>
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body key={uuidv4()}>
                 <div className="location">
-                  <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    zoom={16}
-                    center={{
-                      lat: parseFloat(report.latitude),
-                      lng: parseFloat(report.longitude),
-                    }}
-                    options={options}
-                  >
-                    <Marker
-                      position={{
+                  <div className="location-wrapper">
+                    <GoogleMap
+                      mapContainerStyle={mapContainerStyle}
+                      zoom={16}
+                      center={{
                         lat: parseFloat(report.latitude),
                         lng: parseFloat(report.longitude),
                       }}
-                    />
-                  </GoogleMap>
+                      options={options}
+                    >
+                      <Marker
+                        position={{
+                          lat: parseFloat(report.latitude),
+                          lng: parseFloat(report.longitude),
+                        }}
+                      />
+                    </GoogleMap>
+                  </div>
                 </div>
               </Modal.Body>
               <Modal.Footer key={uuidv4()}>
