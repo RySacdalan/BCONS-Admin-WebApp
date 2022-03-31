@@ -5,84 +5,22 @@
   padding: 25px;
   background-color: $white2;
 }
-
-.table-wrapper {
-  max-width: 76vw;
-  padding: 8px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.47);
-  -webkit-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.47);
-  -moz-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.47);
-  .search-input {
-    display: flex;
-    justify-content: right;
-    padding: 8px;
-    font-family: inherit;
-    input {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid $gray1;
-      width: 350px;
-    }
-    ion-icon {
-      position: absolute;
-      font-size: 1.5rem;
-      transform: translate(-18px, 8px);
-      color: $font-color1;
-    }
-  }
-  .table-container {
-    background-color: $white1;
-    max-height: 63vh;
-    overflow-x: scroll;
-  }
-  table {
-    border-collapse: collapse;
-  }
-  th {
-    z-index: 10;
-    position: sticky;
-    top: 0px;
+.delete-btn, .edit-btn{
+  padding: 12px;
+}
+.delete-btn {
+  background-color: $red2;
+  color: $white1;
+  &:hover{
     background-color: $red1;
-    padding: 8px;
-    color: $white1;
-    font-weight: 500;
-  }
-  td {
-    padding: 5px;
-  }
-  td,
-  th {
-    border: 1px solid $white2;
-    text-align: center;
-  }
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
-  img {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
-    padding: 2px;
-  }
-  .control-wrapper {
-    display: flex;
-    button {
-      font-size: 1.1rem;
-      width: 50px;
-      margin: 0 8px;
-      padding: 5px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-    }
-    .delete-btn {
-      background-color: $red2;
-      color: $white1;
-    }
-    .edit-btn {
-      background-color: #4361ee;
-      color: $white1;
-    }
   }
 }
+.edit-btn {
+  background-color: #4361ee;
+  color: $white1;
+  &:hover{
+    background-color: blue;
+  }
+}
+  
+

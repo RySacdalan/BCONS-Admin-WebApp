@@ -1,1 +1,32 @@
 @import "./variables";
+
+
+.update-btn, .location-btn{
+ color: $white1;
+ width: 175px;
+ padding: 10px;
+}
+.update-btn{
+    background-color: #E09F3E;
+    &:hover{
+        background-color: #eb824a;
+    }
+}
+.location-btn{
+    background-color: $red2;
+    &:hover{
+        background-color: $red1;
+    }
+}
+.report-btn-wrapper{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ p{
+     margin-bottom: 0;
+ }
+ ion-icon{
+     margin: 0 3px;
+     font-size: 1.2rem;
+ }
+}

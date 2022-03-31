@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
 import { toast } from "react-toastify";
-import "../styles/reportdatatable.scss";
+// import "../styles/reportdatatable.scss";
 import LocationModal from "./locationModal";
 
 //data reference
@@ -11,7 +11,6 @@ const Reportsdatatable = () => {
   const [data, setData] = useState([]);
   const [reportId, setReportId] = useState("");
   const [reportStatus, setreportStatus] = useState("solved");
-  const [loader, setLoader] = useState(true);
   const [modalShow, setModalShow] = useState(false);
 
   //Getting all data of reports
@@ -22,12 +21,13 @@ const Reportsdatatable = () => {
         items.push(doc.data());
       });
       setData(items);
-      setLoader(false);
     });
   };
   useEffect(() => {
     getData();
   }, []);
+
+  //function for updating report to solved
   function updateStatus(editReport) {
     if (
       window.confirm(
@@ -56,18 +56,17 @@ const Reportsdatatable = () => {
         </div>
 
         <div className="table-container">
-        <LocationModal
+          <LocationModal
             show={modalShow}
             onHide={() => setModalShow(false)}
             data={data}
             reportid={reportId}
-            
           />
           <table>
             <thead>
               <tr>
-                <th>Status</th>
-                <th>Image</th>
+                <th>Control Reports</th>
+                <th>Image Report</th>
                 <th>Name</th>
                 <th>Type of Report</th>
                 <th>Description</th>
@@ -81,14 +80,13 @@ const Reportsdatatable = () => {
             </thead>
             <tbody>
               {data.map((report) => {
-                if (report.length != 0 && report.status === "unsolved") {
+                if (report.status === "unsolved") {
                   return (
-                    
                     <tr key={report.id}>
                       <td>
                         <div className="control-wrapper">
                           <button
-                            className="edit-btn"
+                            className="update-btn"
                             onClick={() => {
                               updateStatus({
                                 status: reportStatus,
@@ -96,16 +94,22 @@ const Reportsdatatable = () => {
                               });
                             }}
                           >
-                            <ion-icon name="create"></ion-icon>
+                            <div className="report-btn-wrapper">
+                              <ion-icon name="checkmark-circle-outline"></ion-icon>
+                              <p>Mark Solved</p>
+                            </div>
                           </button>
                           <button
-                            className="delete-btn"
+                            className="location-btn"
                             onClick={() => {
                               setModalShow(true);
                               setReportId(report.reportId);
                             }}
                           >
-                            <ion-icon name="location"></ion-icon>
+                            <div className="report-btn-wrapper">
+                              <ion-icon name="location-sharp"></ion-icon>
+                              <p>See Location</p>
+                            </div>
                           </button>
                         </div>
                       </td>
