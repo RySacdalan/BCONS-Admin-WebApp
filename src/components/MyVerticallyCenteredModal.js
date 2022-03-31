@@ -11,7 +11,7 @@ function MyVerticallyCenteredModal(props) {
   const { data, userid } = props;
   console.log(userid);
 
-  const [email, setEmail] = useState("");
+  
   const [contactNumber, setContactNumber] = useState("");
   const [street, setStreet] = useState("");
   const [brgy, setBrgy] = useState("");
@@ -21,7 +21,6 @@ function MyVerticallyCenteredModal(props) {
   //Updating user document
   function updateDoc(editUser) {
     if (
-      !email ||
       !contactNumber ||
       !street ||
       !brgy ||
@@ -73,13 +72,6 @@ function MyVerticallyCenteredModal(props) {
                 <div className="form-container">
                   <form id="modalForm">
                     <div className="form-input">
-                      <label>Email</label>
-                      <input
-                        type="text"
-                        id="email"
-                        placeholder="Edit email"
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
                       <label>Contact number</label>
                       <input
                         type="text"
@@ -128,7 +120,6 @@ function MyVerticallyCenteredModal(props) {
                   style={{ backgroundColor: "#07bc0c", border: "none" }}
                   onClick={() => {
                     updateDoc({
-                      email: email,
                       contactNumber: contactNumber,
                       street: street,
                       brgy: brgy,
