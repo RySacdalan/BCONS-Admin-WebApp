@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
 import { toast } from "react-toastify";
-// import "../styles/reportdatatable.scss";
+import "../styles/reportdatatable.scss";
 import LocationModal from "./locationModal";
 
 //data reference

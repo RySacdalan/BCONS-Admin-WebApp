@@ -28,7 +28,7 @@ const Barchart = () => {
 
   //Accident reports
   const accident = reports.filter((report) => {
-    return report.emergencyTypeOfReport === "Accident";
+    return report.emergencyTypeOfReport === "Traffic Accident";
   });
 
   //Earthquake reports
