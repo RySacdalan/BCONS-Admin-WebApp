@@ -6,9 +6,10 @@ export const ReportContext = createContext();
 
 export const ReportProvider = ({ children }) => {
   const [reports, setReports] = useState([]);
+  const [nearbyReports, setNearbyReports] = useState([]);
 
-  //All reports
-  const getReports = async () => {
+  //For all user reports
+  const getUserReports = async () => {
     const db = getFirestore();
     const colRef = collection(db, "User Reports");
     const querySnapshot = await getDocs(colRef);
@@ -20,11 +21,28 @@ export const ReportProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getReports();
+    getUserReports();
+  }, []);
+
+  // //For all user nearby reports
+  const getNearbyReports = async () => {
+    const db = getFirestore();
+    const colRef = collection(db, "User's Nearby Report");
+    const querySnapshot = await getDocs(colRef);
+    const data = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    setNearbyReports(data);
+  };
+
+  useEffect(() => {
+    getNearbyReports();
   }, []);
 
   const reportValue = {
     reports,
+    nearbyReports,
   };
 
   return (
