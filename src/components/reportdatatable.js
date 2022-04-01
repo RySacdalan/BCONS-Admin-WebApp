@@ -10,7 +10,7 @@ const ref = firebase.firestore().collection("User Reports");
 const Reportsdatatable = () => {
   const [data, setData] = useState([]);
   const [reportId, setReportId] = useState("");
-  const [reportStatus, setreportStatus] = useState("solved");
+  const [reportStatus, setreportStatus] = useState("Solved");
   const [modalShow, setModalShow] = useState(false);
 
   //Getting all data of reports
@@ -39,10 +39,10 @@ const Reportsdatatable = () => {
         .doc(editReport.id)
         .update(editReport)
         .then(() => {
-          toast.success("User's Report Updated Successfully!");
+          toast.success("Report Updated As Solved Successfully!");
         })
         .catch((err) => {
-          toast.error("ERROR: Failed to update user!");
+          toast.error("ERROR: Failed to update the report!");
           console.log(err);
         });
     }
@@ -51,87 +51,83 @@ const Reportsdatatable = () => {
   return (
     <div className="report-container">
       <div className="table-wrapper">
-        <div className="search-input">
-          <input type="text" placeholder="Search..." />
-          <ion-icon name="search"></ion-icon>
-        </div>
-
-        <div className="table-container">
+        <div className="report-list-container">
           <LocationModal
             show={modalShow}
             onHide={() => setModalShow(false)}
             data={data}
             reportid={reportId}
           />
-          <table>
-            <thead>
-              <tr>
-                <th>Control Reports</th>
-                <th>Image Report</th>
-                <th>Name</th>
-                <th>Type of Report</th>
-                <th>Description</th>
-                <th>Blood Type</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Email</th>
-                <th>Age</th>
-                <th>Report Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((report) => {
-                if (report.status == "unsolved") {
-                  return (
-                    <tr key={report.id}>
-                      <td>
-                        <div className="control-wrapper">
-                          <button
-                            className="update-btn"
-                            onClick={() => {
-                              updateStatus({
-                                status: reportStatus,
-                                id: report.reportId,
-                              });
-                            }}
-                          >
-                            <div className="report-btn-wrapper">
-                              <ion-icon name="checkmark-circle-outline"></ion-icon>
-                              <p>Mark Solved</p>
-                            </div>
-                          </button>
-                          <button
-                            className="location-btn"
-                            onClick={() => {
-                              setModalShow(true);
-                              setReportId(report.reportId);
-                            }}
-                          >
-                            <div className="report-btn-wrapper">
-                              <ion-icon name="location-sharp"></ion-icon>
-                              <p>See Location</p>
-                            </div>
-                          </button>
-                        </div>
-                      </td>
-                      <td>
-                        <img src={report.image} alt="Profile Image" />
-                      </td>
-                      <td>{report.name}</td>
-                      <td>{report.emergencyTypeOfReport}</td>
-                      <td>{report.description}</td>
-                      <td>{report.bloodType}</td>
-                      <td>{report.date}</td>
-                      <td>{report.time}</td>
-                      <td>{report.email}</td>
-                      <td>{report.age}</td>
-                      <td>{report.status}</td>
-                    </tr>
-                  );
-                }
-              })}
-            </tbody>
-          </table>
+          {data.map((report) => {
+            if (report.status === "Unsolved") {
+              return (
+                <div className="report-list-wrapper">
+                  <div className="report-image">
+                    <img src={report.image} alt="Report Image" />
+                  </div>
+                  <div className="report-details">
+                    <p>
+                      <span>Emergency:</span> {report.emergencyTypeOfReport}
+                    </p>
+                    <div className="report-time">
+                      <p>
+                        <span>Status:</span> {report.status}
+                      </p>
+                      <p>
+                        <span>Time:</span> {report.time} <span>| </span>
+                        <span>Date:</span> {report.date}
+                      </p>
+                      <p>
+                        <span>Report by:</span> {report.name}
+                      </p>
+                      <p>
+                        <span>BloodType:</span> {report.bloodType}
+                      </p>
+                      <p>
+                        <span>Contact:</span> {report.contactNumber}
+                      </p>
+                      <div className="control-wrapper">
+                        <button
+                          className="update-btn"
+                          onClick={() => {
+                            updateStatus({
+                              status: reportStatus,
+                              id: report.reportId,
+                            });
+                          }}
+                        >
+                          <div className="report-btn-wrapper">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <p>Mark Solved</p>
+                          </div>
+                        </button>
+                        <button
+                          className="location-btn"
+                          onClick={() => {
+                            setModalShow(true);
+                            setReportId(report.reportId);
+                          }}
+                        >
+                          <div className="report-btn-wrapper">
+                            <ion-icon name="location-sharp"></ion-icon>
+                            <p>See Location</p>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="report-description">
+                    <p>
+                      <span>Report Description:</span>
+                    </p>
+                    <div className="description-container">
+                      <p>{report.description}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+          })}
         </div>
       </div>
     </div>

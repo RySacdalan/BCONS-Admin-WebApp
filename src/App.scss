@@ -59,11 +59,48 @@ h3 {
     display: flex;
     button {
       font-size: 1.1rem;
-      margin: 0 5px;
+      margin-right: 5px;
       border-radius: 5px;
       border: none;
       cursor: pointer;
     }
+  }
+}
+
+//Report list style
+.report-list-container{
+  background-color: $white1;
+  max-height: 63vh;
+  overflow-y: scroll;
+}
+.report-list-wrapper{
+  display: flex;
+  padding: 12px;
+  border-bottom: 3px solid $gray1;
+  margin-bottom: 1rem;
+  span{
+    
+    color: $font-color2;
+  }
+  .report-image{
+    max-height: 300px;
+    max-width: 300px;
+    margin-right: 1rem;
+    img{
+      height: 100%;
+      width: 100%;
+      border-radius: 5px;
+    }
+  }
+  .report-details{
+    margin-right: 1rem;
+  }
+  .description-container{
+    height: 240px;
+    width: 350px;
+    padding: 12px;
+    overflow-y: scroll;
+    background-color: $white2;
   }
 }
 

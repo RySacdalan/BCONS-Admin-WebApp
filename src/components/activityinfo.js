@@ -9,7 +9,7 @@ const Activityinfo = () => {
   const { reports } = useContext(ReportContext);
 
   const unsolveReports = reports.filter((report) => {
-    return report.status === "unsolved";
+    return report.status === "Unsolved";
   });
 
   return (
