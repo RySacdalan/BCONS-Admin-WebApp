@@ -29,6 +29,7 @@ const Reportsdatatable = () => {
 
   //function for updating report to solved
   function updateStatus(editReport) {
+    console.log(editReport.id);
     if (
       window.confirm(
         "Updating this report will be permanent and can be only seen in the history of reports. Are you sure you want to mark this report as solved permanently?"
@@ -80,7 +81,7 @@ const Reportsdatatable = () => {
             </thead>
             <tbody>
               {data.map((report) => {
-                if (report.status === "unsolved") {
+                if (report.status == "unsolved") {
                   return (
                     <tr key={report.id}>
                       <td>

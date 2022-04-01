@@ -29,7 +29,6 @@ const Historydatatable = () => {
     getData();
   }, []);
 
-
   return (
     <div className="history-container">
       <div className="table-wrapper">
@@ -39,12 +38,11 @@ const Historydatatable = () => {
         </div>
 
         <div className="table-container">
-        <LocationModal
+          <LocationModal
             show={modalShow}
             onHide={() => setModalShow(false)}
             data={data}
             reportid={reportId}
-            
           />
           <table>
             <thead>
@@ -64,9 +62,8 @@ const Historydatatable = () => {
             </thead>
             <tbody>
               {data.map((history) => {
-                if (history.status === "solved") {
+                if (history.status == "solved") {
                   return (
-                    
                     <tr key={history.id}>
                       <td>
                         <div className="control-wrapper">

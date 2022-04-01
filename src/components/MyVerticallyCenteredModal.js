@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ref } from "../pages/users/usertable";
 import { toast } from "react-toastify";
 import "../styles/centeredmodal.scss";
-import { v4 as uuidv4 } from "uuid";
 
 //Main modal update form
 function MyVerticallyCenteredModal(props) {
