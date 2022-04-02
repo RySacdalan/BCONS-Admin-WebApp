@@ -56,7 +56,7 @@ const UserTable = () => {
         <div className="search-input">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search user here..."
             onChange={(e) => setSearch(e.target.value)}
           />
           <ion-icon name="search"></ion-icon>
