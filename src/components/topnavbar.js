@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useUserContext } from "../context/userContext";
 import "../styles/topnavbar.scss";
 import logo from "../images/BCONS-plain.png";
-import Topdropdown from "./topdropdown";
 import { ThemeContext } from "../context/themeContext";
 import { v4 as uuidv4 } from "uuid";
 
@@ -41,7 +40,6 @@ const Topnavbar = () => {
             key={uuidv4()}
           >
             <p>{user.email}</p> {/*eslint-disable-line */}
-            <Topdropdown key={uuidv4()} />
           </div>
         </div>
       </div>
