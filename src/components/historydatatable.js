@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
 import LocationModal from "./locationModal";
 import ImageModal from "./imageModal";
 import "../styles/historydatatable.scss";
+import { v4 as uuidv4 } from "uuid";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
@@ -30,9 +32,9 @@ const Historydatatable = () => {
   }, []);
 
   return (
-    <div className="report-container">
-      <div className="table-wrapper">
-        <div className="search-input">
+    <div className="report-container" key={uuidv4()}>
+      <div className="table-wrapper" key={uuidv4()}>
+        <div className="search-input" key={uuidv4()}>
           <input
             type="text"
             placeholder="Search emergency here..."
@@ -47,6 +49,7 @@ const Historydatatable = () => {
             data={reportHistory}
             reportid={reportId}
           />
+        <div className="report-list-container" key={uuidv4()}>
           <LocationModal
             show={modalShow}
             onHide={() => setModalShow(false)}
@@ -121,6 +124,7 @@ const Historydatatable = () => {
               </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

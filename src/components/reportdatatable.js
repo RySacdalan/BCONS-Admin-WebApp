@@ -1,8 +1,10 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
 import { toast } from "react-toastify";
 import "../styles/reportdatatable.scss";
 import LocationModal from "./locationModal";
+import { v4 as uuidv4 } from "uuid";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
@@ -74,9 +76,9 @@ const Reportsdatatable = () => {
   }
 
   return (
-    <div className="report-container">
-      <div className="table-wrapper">
-        <div className="search-input">
+    <div className="report-container" key={uuidv4()}>
+      <div className="table-wrapper" key={uuidv4()}>
+        <div className="search-input" key={uuidv4()}>
           <input
             type="text"
             placeholder="Search emergency here..."
@@ -84,7 +86,7 @@ const Reportsdatatable = () => {
           />
           <ion-icon name="search"></ion-icon>
         </div>
-        <div className="report-list-container">
+        <div className="report-list-container" key={uuidv4()}>
           <LocationModal
             show={modalShow}
             onHide={() => setModalShow(false)}
@@ -103,15 +105,15 @@ const Reportsdatatable = () => {
             .map((report) => {
               if (report.status === "Unsolved") {
                 return (
-                  <div className="report-list-wrapper">
-                    <div className="report-image">
+                  <div className="report-list-wrapper" key={uuidv4()}>
+                    <div className="report-image" key={uuidv4()}>
                       <img src={report.image} alt="Report Image" />
                     </div>
-                    <div className="report-details">
+                    <div className="report-details" key={uuidv4()}>
                       <p>
                         <span>Emergency:</span> {report.emergencyTypeOfReport}
                       </p>
-                      <div className="report-time">
+                      <div className="report-time" key={uuidv4()}>
                         <p>
                           <span>Status:</span> {report.status}
                         </p>
@@ -129,7 +131,7 @@ const Reportsdatatable = () => {
                         <p>
                           <span>Contact:</span> {report.contactNumber}
                         </p>
-                        <div className="control-wrapper">
+                        <div className="control-wrapper" key={uuidv4()}>
                           <button
                             className="update-btn"
                             onClick={() => {
@@ -141,7 +143,7 @@ const Reportsdatatable = () => {
                               });
                             }}
                           >
-                            <div className="report-btn-wrapper">
+                            <div className="report-btn-wrapper" key={uuidv4()}>
                               <ion-icon name="checkmark-circle-outline"></ion-icon>
                               <p>Mark Solved</p>
                             </div>
@@ -153,7 +155,7 @@ const Reportsdatatable = () => {
                               setReportId(report.reportId);
                             }}
                           >
-                            <div className="report-btn-wrapper">
+                            <div className="report-btn-wrapper" key={uuidv4()}>
                               <ion-icon name="location-sharp"></ion-icon>
                               <p>See Location</p>
                             </div>
@@ -161,11 +163,11 @@ const Reportsdatatable = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="report-description">
+                    <div className="report-description" key={uuidv4()}>
                       <p>
                         <span>Report Description:</span>
                       </p>
-                      <div className="description-container">
+                      <div className="description-container" key={uuidv4()}>
                         <p>
                           {report.description == ""
                             ? "No description available"
