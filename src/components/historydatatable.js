@@ -1,7 +1,9 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import firebase from "../firebase/firebase.config";
 import LocationModal from "./locationModal";
 import "../styles/historydatatable.scss";
+import { v4 as uuidv4 } from "uuid";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
@@ -28,9 +30,9 @@ const Historydatatable = () => {
   }, []);
 
   return (
-    <div className="report-container">
-      <div className="table-wrapper">
-        <div className="search-input">
+    <div className="report-container" key={uuidv4()}>
+      <div className="table-wrapper" key={uuidv4()}>
+        <div className="search-input" key={uuidv4()}>
           <input
             type="text"
             placeholder="Search emergency here..."
@@ -38,7 +40,7 @@ const Historydatatable = () => {
           />
           <ion-icon name="search"></ion-icon>
         </div>
-        <div className="report-list-container">
+        <div className="report-list-container" key={uuidv4()}>
           <LocationModal
             show={modalShow}
             onHide={() => setModalShow(false)}
@@ -57,15 +59,15 @@ const Historydatatable = () => {
             .map((report) => {
               if (report.status === "Solved") {
                 return (
-                  <div className="report-list-wrapper">
-                    <div className="report-image">
+                  <div className="report-list-wrapper" key={uuidv4()}>
+                    <div className="report-image" key={uuidv4()}>
                       <img src={report.image} alt="Report Image" />
                     </div>
-                    <div className="report-details">
+                    <div className="report-details" key={uuidv4()}>
                       <p>
                         <span>Emergency:</span> {report.emergencyTypeOfReport}
                       </p>
-                      <div className="report-time">
+                      <div className="report-time" key={uuidv4()}>
                         <p>
                           <span>Status:</span> {report.status}
                         </p>
@@ -82,9 +84,13 @@ const Historydatatable = () => {
                         <p>
                           <span>Email:</span> {report.email}
                         </p>
-                        <div className="control-wrapper">
-                          <button className="update-btn" disabled>
-                            <div className="report-btn-wrapper">
+                        <div className="control-wrapper" key={uuidv4()}>
+                          <button
+                            className="update-btn"
+                            disabled
+                            key={uuidv4()}
+                          >
+                            <div className="report-btn-wrapper" key={uuidv4()}>
                               <ion-icon name="checkmark-circle-outline"></ion-icon>
                               <p>Solved!</p>
                             </div>
@@ -104,11 +110,11 @@ const Historydatatable = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="report-description">
+                    <div className="report-description" key={uuidv4()}>
                       <p>
                         <span>Report Description:</span>
                       </p>
-                      <div className="description-container">
+                      <div className="description-container" key={uuidv4()}>
                         <p>{report.description}</p>
                       </div>
                     </div>
