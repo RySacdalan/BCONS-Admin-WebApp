@@ -61,8 +61,6 @@ const Historydatatable = () => {
           [report.emergencyTypeOfReport],
           [report.date],
           [report.time],
-          [report.date],
-          [report.time],
           [report.dateSolved],
           [report.timeSolved],
         ];
