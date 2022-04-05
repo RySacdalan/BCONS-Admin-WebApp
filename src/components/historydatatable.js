@@ -69,7 +69,7 @@ const Historydatatable = () => {
       }),
     });
 
-    doc.save("History-Reports.pdf");
+    doc.save(`HistoryReports-${month}/${date}/${year}.pdf`);
   };
 
   return (
