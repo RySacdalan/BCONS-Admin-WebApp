@@ -55,6 +55,11 @@ h3 {
     border-radius: 50%;
     padding: 2px;
   }
+  .data-control{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+  }
   .control-wrapper {
     display: flex;
     justify-content: center;
@@ -80,7 +85,6 @@ h3 {
   border-bottom: 3px solid $gray1;
   margin-bottom: 1rem;
   span{
-    
     color: $font-color2;
   }
   .report-image{
@@ -106,6 +110,35 @@ h3 {
 }
 
 //search input style
+.control-wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.print-history{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $white1;
+  border: 1px solid $gray1;
+  padding: 8px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  ion-icon {
+    font-size: 1.5rem;
+    color: $font-color1;
+  }
+  &:hover{
+    background-color: $font-color1;
+    border: 1px solid $font-color1;
+    ion-icon{
+      color: $white1;
+    }
+  }
+}
+
 .search-input {
   display: flex;
   justify-content: right;

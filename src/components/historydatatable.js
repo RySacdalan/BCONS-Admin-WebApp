@@ -4,6 +4,8 @@ import firebase from "../firebase/firebase.config";
 import LocationModal from "./locationModal";
 import ImageModal from "./imageModal";
 import "../styles/historydatatable.scss";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
@@ -15,7 +17,6 @@ const Historydatatable = () => {
   const [modalShow, setModalShow] = useState(false);
   const [imageShow, setImageShow] = useState(false);
   const [search, setSearch] = useState("");
-  const [number, setNumber] = useState(1);
 
   //Getting all data of reports
   const getData = () => {
@@ -31,16 +32,54 @@ const Historydatatable = () => {
     getData();
   }, []);
 
+  //downloading pdf file
+  const downloadPdf = () => {
+    const doc = new jsPDF();
+    doc.text("History Report Table", 20, 10);
+
+    doc.autoTable({
+      head: [
+        [
+          "Reported By",
+          "Report Type",
+          "Date Reported",
+          "Time Reported",
+          "Date Solved",
+          "Time Solved",
+        ],
+      ],
+      body: reportHistory.map((report) => {
+        return [
+          [report.name],
+          [report.emergencyTypeOfReport],
+          [report.date],
+          [report.time],
+          [report.date],
+          [report.time],
+          [report.dateSolved],
+          [report.timeSolved],
+        ];
+      }),
+    });
+
+    doc.save("report.pdf");
+  };
+
   return (
     <div className="report-container">
       <div className="table-wrapper">
-        <div className="search-input">
-          <input
-            type="text"
-            placeholder="Search here..."
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <ion-icon name="search"></ion-icon>
+        <div className="data-control">
+          <div className="search-input">
+            <input
+              type="text"
+              placeholder="Search here..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <ion-icon name="search"></ion-icon>
+          </div>
+          <div className="print-history" onClick={() => downloadPdf()}>
+            <ion-icon name="print-outline"></ion-icon>
+          </div>
         </div>
         <div className="history-list-container">
           <ImageModal

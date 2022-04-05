@@ -1,6 +1,5 @@
 @import "./variables";
 .history-btn-wrapper{
-    
     align-items: center;
     justify-content: center;
     p{
@@ -11,13 +10,13 @@
         margin: 0 3px;
         font-size: 1.2rem;
     }
-   }
-   .history-location-btn{
+}
+    .history-location-btn{
     color: $white1;
     width: 60px;
     padding: 8px;
-   }
-   .history-location-btn{
+    }
+    .history-location-btn{
     background-color: $red2;
     &:hover{
         background-color: $red1;

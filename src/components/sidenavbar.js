@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import "../styles/sidenavbar.scss";
 import { NavLink } from "react-router-dom";
