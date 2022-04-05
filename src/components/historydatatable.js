@@ -32,10 +32,17 @@ const Historydatatable = () => {
     getData();
   }, []);
 
+  //date for pdf file
+  var date = new Date().getDate();
+  var month = new Date().getMonth() + 1;
+  var year = new Date().getFullYear();
+  month = month < 10 ? "0" + month : month;
+  date = date < 10 ? "0" + date : date;
+
   //downloading pdf file
   const downloadPdf = () => {
     const doc = new jsPDF();
-    doc.text("History Report Table", 20, 10);
+    doc.text(`History of Reports as of ${month}/${date}/${year}.`, 20, 10);
 
     doc.autoTable({
       head: [
@@ -62,7 +69,7 @@ const Historydatatable = () => {
       }),
     });
 
-    doc.save("report.pdf");
+    doc.save("History-Reports.pdf");
   };
 
   return (
