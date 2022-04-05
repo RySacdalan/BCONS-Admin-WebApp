@@ -13,14 +13,14 @@ const Sidenavbar = () => {
       <div className="sidenavbar-wrapper" key={uuidv4()}>
         <div className="sidenavbar-menu" key={uuidv4()}>
           <h3 className="sidenavbar-title" key={uuidv4()}>
-            Dashboard
+            Menu
           </h3>
           <div className="link-container">
             <ul className="sidenavbar-list" key={uuidv4()}>
               <div className="upper-navlink-wrapper">
                 <NavLink exact to="/" key={uuidv4()}>
                   <ion-icon name="home"></ion-icon>
-                  <p>Home</p>
+                  <p>Dashboard</p>
                 </NavLink>
                 <NavLink exact to="/users" key={uuidv4()}>
                   <ion-icon name="people"></ion-icon>

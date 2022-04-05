@@ -4,7 +4,6 @@ import firebase from "../firebase/firebase.config";
 import LocationModal from "./locationModal";
 import ImageModal from "./imageModal";
 import "../styles/historydatatable.scss";
-import { v4 as uuidv4 } from "uuid";
 
 //data reference
 const ref = firebase.firestore().collection("User Reports");
@@ -16,6 +15,7 @@ const Historydatatable = () => {
   const [modalShow, setModalShow] = useState(false);
   const [imageShow, setImageShow] = useState(false);
   const [search, setSearch] = useState("");
+  const [number, setNumber] = useState(1);
 
   //Getting all data of reports
   const getData = () => {
@@ -32,58 +32,59 @@ const Historydatatable = () => {
   }, []);
 
   return (
-    <div className="report-container" key={uuidv4()}>
-      <div className="table-wrapper" key={uuidv4()}>
-        <div className="search-input" key={uuidv4()}>
+    <div className="report-container">
+      <div className="table-wrapper">
+        <div className="search-input">
           <input
             type="text"
-            placeholder="Search emergency here..."
+            placeholder="Search here..."
             onChange={(e) => setSearch(e.target.value)}
           />
           <ion-icon name="search"></ion-icon>
         </div>
-        <div className="report-list-container">
+        <div className="history-list-container">
           <ImageModal
             show={imageShow}
             onHide={() => setImageShow(false)}
             data={reportHistory}
             reportid={reportId}
           />
-        <div className="report-list-container" key={uuidv4()}>
-          <LocationModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            data={reportHistory}
-            reportid={reportId}
-          />
-          
-                <div className="table-container">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Reported By</th>
-                      <th>Type of Report</th>
-                      <th>Date Reported</th>
-                      <th>Time Reported</th>
-                      <th>Date Solved</th>
-                      <th>Time Solved</th>
-                      <th>Image & Location </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {reportHistory
-                      .filter(
-                        (history) =>
-                          // search keywords available
-                          history.date.includes(search) ||
-                          history.emergencyTypeOfReport.toLowerCase().includes(search) ||
-                          history.time.includes(search) ||
-                          history.name.toLowerCase().includes(search)  
-                      )
-                      .map((history) => {
-                        if (history.status === "Solved") {
-                          
-                          return (
+          <div className="report-list-container">
+            <LocationModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              data={reportHistory}
+              reportid={reportId}
+            />
+
+            <div className="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Reported By</th>
+                    <th>Type of Report</th>
+                    <th>Date Reported</th>
+                    <th>Time Reported</th>
+                    <th>Date Solved</th>
+                    <th>Time Solved</th>
+                    <th>View Image or Location </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reportHistory
+                    .filter(
+                      (history) =>
+                        // search keywords available
+                        history.date.toLowerCase().includes(search) ||
+                        history.emergencyTypeOfReport
+                          .toLowerCase()
+                          .includes(search) ||
+                        history.time.toLowerCase().includes(search) ||
+                        history.name.toLowerCase().includes(search)
+                    )
+                    .map((history) => {
+                      if (history.status === "Solved") {
+                        return (
                           <tr key={history.id}>
                             <td>{history.name}</td>
                             <td>{history.emergencyTypeOfReport}</td>
@@ -100,31 +101,31 @@ const Historydatatable = () => {
                                     setReportId(history.reportId);
                                   }}
                                 >
-                                  <ion-icon name="create"></ion-icon>
+                                  <ion-icon name="image"></ion-icon>
                                 </button>
                                 <button
-                                    className="history-location-btn"
-                                    onClick={() => {
-                                      setModalShow(true);
-                                      setReportId(history.reportId);
-                                    }}
-                                  >
-                                    <div className="history-btn-wrapper">
-                                  <ion-icon name="location-sharp"></ion-icon>
-                                </div>
-                              </button>
+                                  className="history-location-btn"
+                                  onClick={() => {
+                                    setModalShow(true);
+                                    setReportId(history.reportId);
+                                  }}
+                                >
+                                  <div className="history-btn-wrapper">
+                                    <ion-icon name="location-sharp"></ion-icon>
+                                  </div>
+                                </button>
                               </div>
                             </td>
-                        </tr>
+                          </tr>
                         );
-                      }})}
-
-                  </tbody>
-                </table>
-              </div>
+                      }
+                    })}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
