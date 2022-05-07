@@ -92,15 +92,12 @@ const UserTable = () => {
             <tbody>
               {data
                 .filter(
-                  (user) =>
-                    // search keywords available
-                    user.firstName.toLowerCase().includes(search) ||
-                    user.lastName.toLowerCase().includes(search) ||
-                    user.email.toLowerCase().includes(search) ||
-                    user.contactNumber.toLowerCase().includes(search) ||
-                    user.brgy.toLowerCase().includes(search) ||
-                    user.municipality.toLowerCase().includes(search) ||
-                    user.province.toLowerCase().includes(search)
+                  (tao) =>
+                    tao.firstName.toLowerCase().includes(search) ||
+                    tao.lastName.toLowerCase().includes(search) ||
+                    tao.contactNumber.toLowerCase().includes(search) ||
+                    tao.brgy.toLowerCase().includes(search) ||
+                    tao.municipality.toLowerCase().includes(search)
                 )
                 .map((user) => (
                   <tr key={user.uid}>
