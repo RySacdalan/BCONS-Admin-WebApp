@@ -55,16 +55,18 @@ const Historydatatable = () => {
           "Time Solved",
         ],
       ],
-      body: reportHistory.map((report) => {
-        return [
-          [report.name],
-          [report.emergencyTypeOfReport],
-          [report.date],
-          [report.time],
-          [report.dateSolved],
-          [report.timeSolved],
-        ];
-      }),
+      body: reportHistory
+        .filter((solve) => solve.status === "Solved")
+        .map((report) => {
+          return [
+            [report.name],
+            [report.emergencyTypeOfReport],
+            [report.date],
+            [report.time],
+            [report.dateSolved],
+            [report.timeSolved],
+          ];
+        }),
     });
 
     doc.save(`HistoryReports-${month}/${date}/${year}.pdf`);
